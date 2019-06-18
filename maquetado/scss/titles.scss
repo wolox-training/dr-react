@@ -1,18 +1,19 @@
-.main-title{
+.main-title {
+  align-items: center;
+  display:  flex;
   font-size: $text-big;
-  left: -20px;
-  position: relative;
-  top: 5px;
-
-  &-img{
-    height: 100%;
-    max-height: $title-decoration-height;
-    max-width: $title-decoration-width;
-    width: 100%;
-  }
-
-  &-container {
-    align-items: center;
-    display: flex;
+  
+  &:before {
+    background: url('../assets/triangle.svg')  no-repeat;
+    content: '';
+    display:inline-block;
+    height:  $title-decoration-height;
+    left: 20px;
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
+    top: -5px;
+    width: $title-decoration-width;
+    z-index: -1;
   }
 }
