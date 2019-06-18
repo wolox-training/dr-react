@@ -1,0 +1,50 @@
+%equal-align {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech {
+  @extend %equal-align;
+
+  background-color: $green;
+  border-radius: 5px;
+  max-width: 200px;
+  padding: 1rem;
+  position: relative;
+
+  &::before {
+    border: 1px solid $green;
+    border-radius: 5px;
+    content: '';
+    height: 100%;
+    left: -10px;
+    position: absolute;
+    top: -10px;
+    width: 100%;
+  }
+
+  &-logo {
+    width: $tech-logo-size;
+  }
+
+  &-info {
+    @extend %equal-align;
+
+    margin: 1rem 0;
+  }
+
+  &-release {
+    font-weight: bold;
+  }
+
+  &-description {
+    text-align: center;
+  }
+
+  &-box {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 2rem;
+  }
+}
