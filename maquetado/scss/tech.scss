@@ -13,14 +13,14 @@
   padding: 1rem;
   position: relative;
 
-  &::after {
+  &::before {
     border: 1px solid $green;
     border-radius: 5px;
     content: '';
     height: 100%;
-    left: -5px;
+    left: -10px;
     position: absolute;
-    top: -5px;
+    top: -10px;
     width: 100%;
   }
 
@@ -31,7 +31,7 @@
   &-info {
     @extend %equal-align;
 
-    padding: 1rem;
+    padding: 1rem 0;
   }
 
   &-release {
@@ -40,5 +40,11 @@
 
   &-description {
     text-align: center;
+  }
+
+  &-box {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 2rem;
   }
 }
