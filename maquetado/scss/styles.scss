@@ -1,4 +1,6 @@
 .section-project {
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
 }
 
@@ -6,13 +8,7 @@
   margin: 0 0 1rem 0;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  width: 1050px;
-}
-
-.l-container {
+.large-container {
   margin: 0 auto;
   max-width: 1600px;
 }

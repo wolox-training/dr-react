@@ -45,7 +45,9 @@
   }
 
   &s-container {
+    align-self: center;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    width: 1050px;
   }
 }
