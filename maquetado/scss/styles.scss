@@ -1,7 +1,14 @@
 .section-project {
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
 }
 
 .m-bottom-1 {
   margin: 0 0 1rem 0;
+}
+
+.large-container {
+  margin: 0 auto;
+  max-width: 1600px;
 }
