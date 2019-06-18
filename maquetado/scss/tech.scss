@@ -11,9 +11,9 @@
   background-color: $green;
   border-radius: 5px;
   margin: 1rem;
-  max-width: 250px;
   padding: 1rem;
   position: relative;
+  width: 230px;
 
   &::before {
     border: 1px solid $green;
@@ -44,9 +44,8 @@
     text-align: center;
   }
 
-  &-box {
+  &s-container {
     display: flex;
     justify-content: center;
-    padding: 1rem 2rem;
   }
 }
