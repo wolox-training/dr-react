@@ -33,7 +33,9 @@
   }
 
   &-logo {
-    width: $tech-logo-size;
+    height: $tech-logo-size;
+    object-fit: contain;
+    width: 100%;
   }
 
   &-info {
