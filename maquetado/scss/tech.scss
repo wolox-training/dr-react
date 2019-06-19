@@ -23,7 +23,7 @@
     left: -10px;
     position: absolute;
     top: -10px;
-    transition: all 0.35s ease;
+    transition: all 0.30s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     width: 100%;
   }
 
