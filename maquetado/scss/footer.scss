@@ -1,4 +1,4 @@
-.footer-project {
+.footer {
   align-items: center;
   background-color: $blue;
   display: flex;
@@ -6,16 +6,17 @@
   padding: 2rem 1rem;
   position: relative;
   width: 100%;
-}
 
-.footer-text {
-  color: $white;
-}
+  &-text {
+    color: $white;
+  }
 
-.footer-title {
-  font-size: $text-big;
-}
+  &-title {
+    font-size: $text-big;
+  }
 
-.footer-copyright {
-  align-self: flex-end;
+  &-copyright {
+    align-self: flex-end;
+    font-size: $text-small;
+  }
 }
