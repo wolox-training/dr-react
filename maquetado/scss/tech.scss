@@ -8,28 +8,30 @@
 .tech {
   @extend %equal-align;
 
-  background-color: $green;
   border-radius: 5px;
   margin: 1rem;
   padding: 1rem;
   position: relative;
   width: 230px;
 
-  &::before {
-    border: 1px solid $green;
-    border-radius: 5px;
-    content: '';
-    height: 100%;
-    left: -10px;
-    position: absolute;
-    top: -10px;
-    transition: all 0.30s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    width: 100%;
+  &s-container {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas: 'first-tech second-tech third-tech' 'first-tech quarter-tech fifth-tech';
+    grid-template-columns: repeat(3, 300px);
+    justify-self: center;
   }
 
-  &:hover::before {
-    left: 10px;
-    top: 10px;
+  &:first-of-type {
+    grid-area: first-tech;
+
+    &::before {
+      border-right: 2px solid #BED23C;
+      content: '';
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
   }
 
   &-logo {
@@ -50,12 +52,5 @@
 
   &-description {
     text-align: center;
-  }
-
-  &s-container {
-    align-self: center;
-    display: flex;
-    flex-wrap: wrap;
-    width: 1050px;
   }
 }
