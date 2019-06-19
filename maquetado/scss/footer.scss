@@ -1,0 +1,25 @@
+.footer-project {
+  align-items: center;
+  background-color: $blue;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  position: relative;
+  width: 100%;
+}
+
+.footer-title,
+.footer-copyright {
+  color: $white;
+}
+
+.footer-title {
+  font-size: $text-big;
+}
+
+.footer-copyright {
+  bottom: 0;
+  font-size: $text-small;
+  position: absolute;
+  right: 10px;
+}
