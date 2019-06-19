@@ -3,13 +3,12 @@
   background-color: $blue;
   display: flex;
   flex-direction: column;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   position: relative;
   width: 100%;
 }
 
-.footer-title,
-.footer-copyright {
+.footer-text {
   color: $white;
 }
 
@@ -18,8 +17,5 @@
 }
 
 .footer-copyright {
-  bottom: 0;
-  font-size: $text-small;
-  position: absolute;
-  right: 10px;
+  align-self: flex-end;
 }
