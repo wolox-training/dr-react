@@ -17,3 +17,9 @@
   margin: 0 auto;
   max-width: 1600px;
 }
+
+.text-big {
+  @include until($max-width) {
+    font-size: $text-big;
+  }
+}

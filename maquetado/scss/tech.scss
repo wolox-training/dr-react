@@ -8,26 +8,40 @@
 .tech {
   @extend %equal-align;
 
-  border-radius: 5px;
+  @include until($max-width) {
+    border-bottom: 2px solid #BED23C;
+    width: 400px;
+  }
   margin: 1rem;
   padding: 1rem;
   position: relative;
   width: 230px;
 
+
   &s-container {
     display: grid;
     grid-gap: 15px;
     grid-template-columns: repeat(3, $column-width);
+    @include until($max-width) {
+      grid-template-columns: 1fr;
+    }
     justify-self: center;
   }
 
   &:first-child {
     border-right: 2px solid #BED23C;
     grid-row: 1/3;
+    @include until($max-width) {
+      border-right: none;
+      grid-row: auto;
+    }
   }
 
   &-logo {
     height: $tech-logo-size;
+    @include until($max-width) {
+      height: $tech-logo-size-big;
+    }
     object-fit: contain;
     width: 100%;
   }
