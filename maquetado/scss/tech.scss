@@ -16,14 +16,13 @@
 
   &s-container {
     display: grid;
-    grid-gap: 5px;
-    grid-template-areas: 'first-tech second-tech third-tech' 'first-tech quarter-tech fifth-tech';
-    grid-template-columns: repeat(3, 300px);
+    grid-gap: 15px;
+    grid-template-columns: repeat(3, $column-width);
     justify-self: center;
   }
 
-  &:first-of-type {
-    grid-area: first-tech;
+  &:first-child {
+    grid-row: 1/3;
 
     &::before {
       border-right: 2px solid #BED23C;
