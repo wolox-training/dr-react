@@ -18,4 +18,9 @@ function reverseMerge(...params) {
   return params.reduceRight((acc, val) => acc.concat(val));
 }
 
-export { min, copy, reverseMerge };
+function filterAttribs(objectFilter) {
+  const { a, b, ...restObject } = objectFilter;
+  return restObject;
+}
+
+export { min, copy, reverseMerge, filterAttribs };
