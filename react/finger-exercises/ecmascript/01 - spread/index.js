@@ -8,6 +8,6 @@ export function min(...params) {
     : Math.min(...params);
 }
 
-export function copy() {
-
+export function copy(copiedArray) {
+  return isArray(copiedArray) ? [...copiedArray] : { ...copiedArray };
 }
