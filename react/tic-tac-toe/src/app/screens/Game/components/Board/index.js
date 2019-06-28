@@ -1,32 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import Square from '../Square';
-import { calculateWinner } from '../../../../../utils';
 
 import styles from './styles.module.scss';
 
-class Board extends Component {
-  state = {
-    squares: Array(9).fill(null),
-    xIsNext: true
-  };
-
-  handleClick = i => {
-    const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState(prevState => ({ squares, xIsNext: !prevState.xIsNext }));
-  };
-
-  renderSquare = i => <Square value={this.state.squares[i]} onClick={this.handleClick} position={i} />;
+class Board extends PureComponent {
+  renderSquare = i => <Square value={this.props.squares[i]} onClick={this.props.onClick} position={i} />;
 
   render() {
-    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     return (
       <div>
-        <div className={styles.status}>{status}</div>
         <div className={styles.boardRow}>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -46,5 +30,10 @@ class Board extends Component {
     );
   }
 }
+
+Board.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  squares: PropTypes.arrayOf(PropTypes.any)
+};
 
 export default Board;
