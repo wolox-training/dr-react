@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Board from './components/Board';
 
-function Game () {
+function Game() {
   return (
     <div className={styles.game}>
       <div className={styles.gameBoard}>
