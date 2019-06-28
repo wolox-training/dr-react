@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles.module.scss';
 
-const Square = ({ value }) => (
-  <button type="button" className={styles.square}>
-    {value}
-  </button>
-);
+class Square extends PureComponent {
+  handleOnclick = () => {
+    const { onClick, position } = this.props;
+    onClick(position);
+  };
+
+  render() {
+    const { value } = this.props;
+    return (
+      <button type="button" className={styles.square} onClick={this.handleOnclick}>
+        {value}
+      </button>
+    );
+  }
+}
 
 Square.propTypes = {
-  value: PropTypes.string.isRequired
+  onClick: PropTypes.func.isRequired,
+  position: PropTypes.number,
+  value: PropTypes.string
 };
 
 export default Square;

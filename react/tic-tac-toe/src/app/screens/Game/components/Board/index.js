@@ -5,12 +5,21 @@ import Square from '../Square';
 import styles from './styles.module.scss';
 
 class Board extends Component {
-  renderSquare(i) {
-    return <Square value={i} />;
-  }
+  state = {
+    squares: Array(9).fill(null),
+    xIsNext: true
+  };
+
+  handleClick = i => {
+    const squares = this.state.squares.slice();
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState(prevState => ({ squares, xIsNext: !prevState.xIsNext }));
+  };
+
+  renderSquare = i => <Square value={this.state.squares[i]} onClick={this.handleClick} position={i} />;
 
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     return (
       <div>
         <div className={styles.status}>{status}</div>
