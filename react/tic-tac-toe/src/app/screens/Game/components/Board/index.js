@@ -17,7 +17,9 @@ class Board extends PureComponent {
       </div>
     ));
 
-  renderSquare = i => <Square value={this.props.squares[i]} onClick={this.props.onClick} position={i} />;
+  renderSquare = i => (
+    <Square key={`cell-${i + 1}`} value={this.props.squares[i]} onClick={this.props.onClick} position={i} />
+  );
 
   render() {
     return <div>{this.renderRows()}</div>;
