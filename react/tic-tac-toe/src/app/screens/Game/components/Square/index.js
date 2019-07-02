@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
 function Square({ onClick, position, value }) {
-  const handleOnclick = useCallback(() => {
+  const handleClick = useCallback(() => {
     onClick(position);
   }, [position]);
 
