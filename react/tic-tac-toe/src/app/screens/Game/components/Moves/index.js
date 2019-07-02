@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Moves({ onClick, move }) {
   const desc = move ? `Go to move #${move}` : 'Go to game start';
-  const hanldeClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     onClick(move);
   }, [move]);
 
