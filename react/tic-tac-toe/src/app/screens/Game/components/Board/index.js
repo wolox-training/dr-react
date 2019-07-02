@@ -24,7 +24,7 @@ class Board extends PureComponent {
 
 Board.propTypes = {
   onClick: PropTypes.func.isRequired,
-  squares: PropTypes.arrayOf(PropTypes.any)
+  squares: PropTypes.arrayOf(PropTypes.number)
 };
 
 export default Board;

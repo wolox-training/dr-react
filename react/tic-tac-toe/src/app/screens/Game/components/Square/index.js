@@ -16,8 +16,8 @@ function Square({ onClick, position, value }) {
 }
 
 Square.propTypes = {
+  position: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
-  position: PropTypes.number,
   value: PropTypes.string
 };
 
