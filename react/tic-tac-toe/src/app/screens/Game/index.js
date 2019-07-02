@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 import { calculateWinner } from '../../../utils';
 
@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 import Board from './components/Board';
 import Moves from './components/Moves';
 
-class Game extends PureComponent {
+class Game extends Component {
   state = {
     history: [{ squares: Array(9).fill(null) }],
     xIsNext: true,
