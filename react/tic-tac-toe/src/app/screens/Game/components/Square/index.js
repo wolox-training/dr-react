@@ -1,22 +1,18 @@
-import React, { PureComponent } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles.module.scss';
 
-class Square extends PureComponent {
-  handleOnclick = () => {
-    const { onClick, position } = this.props;
+function Square({ onClick, position, value }) {
+  const handleOnclick = useCallback(() => {
     onClick(position);
-  };
+  }, [position]);
 
-  render() {
-    const { value } = this.props;
-    return (
-      <button type="button" className={styles.square} onClick={this.handleOnclick}>
-        {value}
-      </button>
-    );
-  }
+  return (
+    <button type="button" className={styles.square} onClick={handleOnclick}>
+      {value}
+    </button>
+  );
 }
 
 Square.propTypes = {

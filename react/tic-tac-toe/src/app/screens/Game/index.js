@@ -4,31 +4,48 @@ import { calculateWinner } from '../../../utils';
 
 import styles from './styles.module.scss';
 import Board from './components/Board';
+import Moves from './components/Moves';
 
 class Game extends PureComponent {
   state = {
     history: [{ squares: Array(9).fill(null) }],
-    xIsNext: true
+    xIsNext: true,
+    stepNumber: 0
   };
 
   handleClick = i => {
-    const { history, xIsNext } = this.state;
-    const current = history[history.length - 1];
+    const { history, xIsNext, stepNumber } = this.state;
+    const newHistoryPoint = history.slice(0, stepNumber + 1);
+    const current = newHistoryPoint[newHistoryPoint.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
+
     squares[i] = xIsNext ? 'X' : 'O';
+
     this.setState(prevState => ({
-      history: history.concat([{ squares }]),
+      history: newHistoryPoint.concat([{ squares }]),
+      stepNumber: newHistoryPoint.length,
       xIsNext: !prevState.xIsNext
     }));
   };
 
+  handleJumpTo = step => {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0
+    });
+  };
+
+  handleViewMoves = history =>
+    history.map((_step, move) => <Moves key={`move-${move + 1}`} onClick={this.handleJumpTo} move={move} />);
+
   render() {
-    const { history, xIsNext } = this.state;
-    const current = history[history.length - 1];
+    const { history, xIsNext, stepNumber } = this.state;
+    const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
+
     const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`;
 
     return (
@@ -38,7 +55,7 @@ class Game extends PureComponent {
         </div>
         <div className={styles.gameInfo}>
           <div>{status}</div>
-          <ol>{/* TODO */}</ol>
+          <ol>{this.handleViewMoves(history)}</ol>
         </div>
       </div>
     );
