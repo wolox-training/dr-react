@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { calculateWinner } from '../../../utils';
+import { calculateWinner } from '~utils/game';
 
 import styles from './styles.module.scss';
 import Board from './components/Board';
@@ -17,7 +17,7 @@ class Game extends Component {
     const { history, xIsNext, stepNumber } = this.state;
     const newHistoryPoint = history.slice(0, stepNumber + 1);
     const current = newHistoryPoint[newHistoryPoint.length - 1];
-    const squares = current.squares.slice();
+    const squares = [...current.squares];
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -38,8 +38,7 @@ class Game extends Component {
     });
   };
 
-  handleViewMoves = history =>
-    history.map((_step, move) => <Moves key={`move-${move + 1}`} onClick={this.handleJumpTo} move={move} />);
+  renderMoves = (_step, move) => <Moves key={`move-${move + 1}`} onClick={this.handleJumpTo} move={move} />;
 
   render() {
     const { history, xIsNext, stepNumber } = this.state;
@@ -55,7 +54,7 @@ class Game extends Component {
         </div>
         <div className={styles.gameInfo}>
           <div>{status}</div>
-          <ol>{this.handleViewMoves(history)}</ol>
+          <ol>{history.map(this.renderMoves)}</ol>
         </div>
       </div>
     );
