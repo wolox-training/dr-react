@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import store from '@redux/store';
+import { arrayOf, func } from 'prop-types';
+import { bookSelectedPropType, bookPropType } from '@constants/propTypes';
+import { connect } from 'react-redux';
 import actionsCreators from '@redux/book/actions';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
@@ -16,40 +18,35 @@ class App extends Component {
   };
 
   componentDidMount() {
-    store.subscribe(() => {
-      const { books, bookSelected } = store.getState();
-      this.setState({ books, bookSelected });
-    });
-
     this.getBooks();
   }
 
   onSearch = value => {
-    store.dispatch(actionsCreators.searchBook(value));
+    this.props.searchBook(value);
   };
 
-  getBooks = () => setTimeout(() => store.dispatch(actionsCreators.getBooks()), Math.random() * 100);
+  getBooks = () => setTimeout(() => this.props.getBooks(), Math.random() * 100);
 
   addToCart = item => {
-    store.dispatch(actionsCreators.addToCart(item));
+    this.props.addToCart(item);
   };
 
   addItem = itemId => {
-    store.dispatch(actionsCreators.addItem(itemId));
+    this.props.addItem(itemId);
   };
 
-  removeItem = itemId => {
-    const { bookSelected } = this.state;
+  subtractItem = itemId => {
+    const { bookSelected } = this.props;
     const bookS = bookSelected.find(book => book.id === itemId);
     if (bookS.quantity > 1) {
-      store.dispatch(actionsCreators.subtractItem(itemId));
+      this.props.subtractItem(itemId);
     } else {
       this.removeBook(itemId);
     }
   };
 
   removeBook = itemId => {
-    store.dispatch(actionsCreators.removeItem(itemId));
+    this.props.removeItem(itemId);
   };
 
   CONFIGURATION_BUTTON = {
@@ -65,7 +62,7 @@ class App extends Component {
   };
 
   renderBooks = item => {
-    const showButton = !this.state.bookSelected.some(el => el.id === item.id);
+    const showButton = !this.props.bookSelected.some(el => el.id === item.id);
     const configButton = showButton ? this.CONFIGURATION_BUTTON.add : this.CONFIGURATION_BUTTON.remove;
     return <Book key={item.id} data={item} configButton={configButton} />;
   };
@@ -76,21 +73,46 @@ class App extends Component {
         <Navbar />
         <div className={styles.container}>
           <Search onSearch={this.onSearch} />
-          {this.state.books.length ? (
-            this.state.books.map(this.renderBooks)
+          {this.props.books.length ? (
+            this.props.books.map(this.renderBooks)
           ) : (
             <div className={styles.noData}>
               <h2 className={styles.title}>No Data</h2>
             </div>
           )}
         </div>
-        {this.state.bookSelected.length ? (
-          <ShoppingCart data={this.state.bookSelected} addItem={this.addItem} removeItem={this.removeItem} />
-        ) : null}
+        {this.props.bookSelected.length && (
+          <ShoppingCart addItem={this.addItem} removeItem={this.subtractItem} />
+        )}
         <Footer />
       </Fragment>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({ books, bookSelected }) => ({ books, bookSelected });
+
+const mapDispatchToProps = dispatch => ({
+  getBooks: () => dispatch(actionsCreators.getBooks()),
+  searchBook: val => dispatch(actionsCreators.searchBook(val)),
+  addToCart: item => dispatch(actionsCreators.addToCart(item)),
+  addItem: itemId => dispatch(actionsCreators.addItem(itemId)),
+  subtractItem: itemId => dispatch(actionsCreators.subtractItem(itemId)),
+  removeItem: itemId => dispatch(actionsCreators.removeItem(itemId))
+});
+
+App.propTypes = {
+  books: arrayOf(bookPropType),
+  bookSelected: arrayOf(bookSelectedPropType).isRequired,
+  getBooks: func.isRequired,
+  searchBook: func.isRequired,
+  addToCart: func.isRequired,
+  addItem: func.isRequired,
+  subtractItem: func.isRequired,
+  removeItem: func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

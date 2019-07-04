@@ -31,7 +31,7 @@ function reducer(state = initialState, action) {
       const searchBooks = books.filter(
         book => book.name.toLocaleLowerCase().indexOf(action.payload.trim()) >= 0
       );
-      return { ...state, books: searchBooks.length ? [...searchBooks] : [...state.originalData] };
+      return { ...state, books: searchBooks.length ? [...searchBooks] : [] };
     }
     default:
       return state;
