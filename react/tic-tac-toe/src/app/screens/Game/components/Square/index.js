@@ -7,7 +7,6 @@ function Square({ onClick, position, value }) {
   const handleClick = useCallback(() => {
     onClick(position);
   }, [position]);
-
   return (
     <button type="button" className={styles.square} onClick={handleClick}>
       {value}
