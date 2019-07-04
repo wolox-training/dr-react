@@ -38,7 +38,7 @@ const actionsCreators = {
   }),
   searchBook: value => ({
     type: actions.SEARCH_ITEM,
-    payload:
+    payload: value
   })
 };
 
