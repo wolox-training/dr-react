@@ -20,46 +20,36 @@ class App extends Component {
       const { books, bookSelected } = store.getState();
       this.setState({ books, bookSelected });
     });
-    // TODO to implement the dispatch
+
     this.getBooks();
   }
 
-  // TODO to implement the dispatch
-  onSearch = value => {};
+  onSearch = value => {
+    store.dispatch(actionsCreators.searchBook(value));
+  };
 
   getBooks = () => setTimeout(() => store.dispatch(actionsCreators.getBooks()), Math.random() * 100);
 
-  getBook = itemId => {
-    const { bookSelected } = this.state;
-    return bookSelected.find(book => book.id === itemId);
-  };
-  // TODO to implement the dispatch
   addToCart = item => {
     store.dispatch(actionsCreators.addToCart(item));
   };
 
-  // TODO to implement the dispatch
   addItem = itemId => {
-    const bookS = this.getBook(itemId);
-    bookS.quantity += 1;
-    store.dispatch(actionsCreators.addItem(bookS));
+    store.dispatch(actionsCreators.addItem(itemId));
   };
 
-  // TODO to implement the dispatch
   removeItem = itemId => {
-    const bookS = this.getBook(itemId);
+    const { bookSelected } = this.state;
+    const bookS = bookSelected.find(book => book.id === itemId);
     if (bookS.quantity > 1) {
-      bookS.quantity -= 1;
-      store.dispatch(actionsCreators.deleteItem(bookS));
+      store.dispatch(actionsCreators.subtractItem(itemId));
     } else {
       this.removeBook(itemId);
     }
   };
 
   removeBook = itemId => {
-    const { bookSelected } = this.state;
-    const newBookSelected = bookSelected.filter(book => book.id !== itemId);
-    store.dispatch(actionsCreators.removeItem(newBookSelected));
+    store.dispatch(actionsCreators.removeItem(itemId));
   };
 
   CONFIGURATION_BUTTON = {
