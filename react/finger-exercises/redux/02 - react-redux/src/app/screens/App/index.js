@@ -29,14 +29,38 @@ class App extends Component {
 
   getBooks = () => setTimeout(() => store.dispatch(actionsCreators.getBooks()), Math.random() * 100);
 
+  getBook = itemId => {
+    const { bookSelected } = this.state;
+    return bookSelected.find(book => book.id === itemId);
+  };
   // TODO to implement the dispatch
-  addToCart = item => {};
+  addToCart = item => {
+    store.dispatch(actionsCreators.addToCart(item));
+  };
 
   // TODO to implement the dispatch
-  addItem = itemId => {};
+  addItem = itemId => {
+    const bookS = this.getBook(itemId);
+    bookS.quantity += 1;
+    store.dispatch(actionsCreators.addItem(bookS));
+  };
 
   // TODO to implement the dispatch
-  removeItem = itemId => {};
+  removeItem = itemId => {
+    const bookS = this.getBook(itemId);
+    if (bookS.quantity > 1) {
+      bookS.quantity -= 1;
+      store.dispatch(actionsCreators.deleteItem(bookS));
+    } else {
+      this.removeBook(itemId);
+    }
+  };
+
+  removeBook = itemId => {
+    const { bookSelected } = this.state;
+    const newBookSelected = bookSelected.filter(book => book.id !== itemId);
+    store.dispatch(actionsCreators.removeItem(newBookSelected));
+  };
 
   CONFIGURATION_BUTTON = {
     add: {
@@ -45,7 +69,7 @@ class App extends Component {
     },
     remove: {
       text: 'Remove',
-      function: this.removeItem,
+      function: this.removeBook,
       isDanger: true
     }
   };
