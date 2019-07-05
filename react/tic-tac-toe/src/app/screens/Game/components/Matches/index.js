@@ -7,7 +7,8 @@ import styles from './styles.module.scss';
 
 class Matches extends Component {
   state = {
-    matches: []
+    matches: [],
+    loading: true
   };
 
   componentDidMount() {
@@ -30,7 +31,8 @@ class Matches extends Component {
       const response = await api.getMatches();
       const data = this.parseResponse(response);
       this.setState({
-        matches: data
+        matches: data,
+        loading: false
       });
     } catch (error) {
       console.error('error: ', error);
@@ -38,10 +40,12 @@ class Matches extends Component {
   };
 
   render() {
-    const { matches } = this.state;
+    const { matches, loading } = this.state;
     return (
       <Fragment>
-        {matches.length ? (
+        {loading ? (
+          <Spinner name="double-bounce" />
+        ) : (
           <ol>
             {matches.map(match => (
               <li className={styles.match} key={match.createdAt}>
@@ -51,8 +55,6 @@ class Matches extends Component {
               </li>
             ))}
           </ol>
-        ) : (
-          <Spinner name="double-bounce" />
         )}
       </Fragment>
     );
