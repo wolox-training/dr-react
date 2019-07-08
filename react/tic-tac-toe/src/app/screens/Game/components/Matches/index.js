@@ -12,9 +12,7 @@ class Matches extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.getMatches();
-    }, 3000);
+    this.getMatches();
   }
 
   // recomendacioón de alejo

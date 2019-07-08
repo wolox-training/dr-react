@@ -1,0 +1,28 @@
+@import '../../../scss/colors';
+$input-border: $gainsboro-gray;
+$focus-hover: $blue-wolox;
+$border-hover: $silver-gray;
+
+.input {
+  border: 1px solid $input-border;
+  border-radius: 0.25rem;
+  display: block;
+  margin-bottom: 20px;
+  padding: 1rem;
+  width: 100%;
+  &:focus,
+  &:focus:hover {
+    border: 1px solid darken($color: $focus-hover, $amount: 10);
+  }
+  &:focus-within {
+    border: 1px solid $focus-hover;
+  }
+
+  &:hover {
+    border-color: $border-hover;
+  }
+}
+
+.container {
+  width: 100%;
+}
