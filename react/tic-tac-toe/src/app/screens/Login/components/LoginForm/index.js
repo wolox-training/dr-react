@@ -8,25 +8,13 @@ import Input from '~components/Input';
 
 import styles from './styles.module.scss';
 
-import { email, required, minLength8 } from '~utils/validations';
+import { validate } from '~utils/validations';
 
 function LoginForm({ handleSubmit, valid }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Field
-        type="text"
-        component={Input}
-        name="email"
-        validate={[email, required]}
-        placeholder="Email Address*"
-      />
-      <Field
-        type="password"
-        component={Input}
-        validate={[minLength8, required]}
-        name="password"
-        placeholder="Password*"
-      />
+      <Field type="text" component={Input} name="email" autocomplete="off" placeholder="Email Address *" />
+      <Field type="password" component={Input} name="password" placeholder="Password *" />
       <Button type="submit" disabled={!valid}>
         Login
       </Button>
@@ -40,5 +28,6 @@ LoginForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'user'
+  form: 'user',
+  validate
 })(LoginForm);

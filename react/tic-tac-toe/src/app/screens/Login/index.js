@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import logo from '../../../assets/logo.svg';
+import logo from '../../assets/logo.svg';
 
 import LoginForm from './components/LoginForm';
 
@@ -17,8 +17,15 @@ class Login extends Component {
   render() {
     return (
       <div className={styles.login}>
-        <img src={logo} alt="logo-wolox" className={styles.logo} />
-        <LoginForm onSubmit={this.handleOnSubmit} />
+        <div className={styles.container}>
+          <img src={logo} alt="logo-wolox" className={styles.logo} />
+          <LoginForm onSubmit={this.handleOnSubmit} />
+        </div>
+        {this.props.error && (
+          <>
+            <h3>usuario ó contraseña inválidos</h3>
+          </>
+        )}
       </div>
     );
   }
@@ -28,7 +35,9 @@ const mapDispatchToProps = dispatch => ({
   LogIn: user => dispatch(actionsCreators.logIn(user))
 });
 
+const mapStateToProps = ({ auth: { error } }) => ({ error });
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Login);
