@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Ecmascript exercises for React Training",
   "main": "index.js",
+  "jest":{
+    "testURL":"http://localhost"
+  },
   "scripts": {
     "test": "jest ."
   },

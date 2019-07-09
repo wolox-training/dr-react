@@ -1,37 +1,29 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+
+import { ArrayCells } from '~constants/array';
 
 import Square from '../Square';
 
 import styles from './styles.module.scss';
 
-class Board extends Component {
-  renderSquare() {
-    return <Square />;
-  }
-
-  render() {
-    const status = 'Next player: X';
-    return (
-      <div>
-        <div className={styles.status}>{status}</div>
-        <div className={styles.boardRow}>
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+function Board({ squares, onClick }) {
+  return (
+    <Fragment>
+      {ArrayCells.map((cells, idx) => (
+        <div key={`row-${idx + 1}`} className={styles.boardRow}>
+          {cells.map(j => (
+            <Square key={`cell-${idx + 1}-${j}`} value={squares[j]} onClick={onClick} position={j} />
+          ))}
         </div>
-        <div className={styles.boardRow}>
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className={styles.boardRow}>
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
+      ))}
+    </Fragment>
+  );
 }
+
+Board.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  squares: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default Board;
