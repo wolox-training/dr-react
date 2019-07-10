@@ -37,8 +37,8 @@ class App extends Component {
 
   subtractItem = itemId => {
     const { bookSelected } = this.props;
-    const bookS = bookSelected.find(book => book.id === itemId);
-    if (bookS.quantity > 1) {
+    const { quantity } = bookSelected.find(book => book.id === itemId) || {};
+    if (quantity && quantity > 1) {
       this.props.subtractItem(itemId);
     } else {
       this.removeBook(itemId);
@@ -68,22 +68,21 @@ class App extends Component {
   };
 
   render() {
+    const { books, bookSelected } = this.props;
     return (
       <Fragment>
         <Navbar />
         <div className={styles.container}>
           <Search onSearch={this.onSearch} />
-          {this.props.books.length ? (
-            this.props.books.map(this.renderBooks)
+          {books.length ? (
+            books.map(this.renderBooks)
           ) : (
             <div className={styles.noData}>
               <h2 className={styles.title}>No Data</h2>
             </div>
           )}
         </div>
-        {this.props.bookSelected.length && (
-          <ShoppingCart addItem={this.addItem} removeItem={this.subtractItem} />
-        )}
+        {bookSelected.length && <ShoppingCart addItem={this.addItem} removeItem={this.subtractItem} />}
         <Footer />
       </Fragment>
     );
