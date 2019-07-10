@@ -13,7 +13,7 @@ function Input({ label, input, type, placeholder, autocomplete, id, meta: { touc
         id={id}
         autoComplete={autocomplete}
         className={cn(styles.input, {
-          [styles.emty]: !!input.value
+          [styles.empty]: !!input.value
         })}
         type={type}
       />
