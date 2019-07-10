@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import styles from './styles.module.scss';
 
-function Button({ children, type, disabled }) {
+function Button({ children, type, disabled, className }) {
   return (
     // eslint-disable-next-line react/button-has-type
-    <button type={type} disabled={disabled} className={styles.button}>
+    <button type={type} disabled={disabled} className={cn(styles.button, { [className]: className })}>
       {children}
     </button>
   );
 }
 
 Button.propTypes = {
-  disabled: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
   type: PropTypes.oneOf(['button', 'submit'])
 };
 

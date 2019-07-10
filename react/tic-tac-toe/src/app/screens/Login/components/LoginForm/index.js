@@ -1,21 +1,30 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { func, bool } from 'prop-types';
+import { func, string } from 'prop-types';
+import cn from 'classnames';
 
 import Button from '~components/Button';
 
 import Input from '~components/Input';
 
+import { ReactComponent as Logo } from '../../../../assets/error.svg';
+
 import styles from './styles.module.scss';
 
 import { validate } from '~utils/validations';
 
-function LoginForm({ handleSubmit, valid }) {
+function LoginForm({ handleSubmit, error }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Field type="text" component={Input} name="email" autocomplete="off" placeholder="Email Address *" />
-      <Field type="password" component={Input} name="password" placeholder="Password *" />
-      <Button type="submit" disabled={!valid}>
+      <Field type="text" component={Input} name="email" autocomplete="off" label="Email Address *" />
+      <Field type="password" component={Input} name="password" label="Password *" />
+      {error && (
+        <div className={styles.container}>
+          <Logo className={styles.logo} />
+          <h3 className={styles.error}>Incorrect username or password.</h3>
+        </div>
+      )}
+      <Button type="submit" className={cn(styles.button)}>
         Login
       </Button>
     </form>
@@ -24,7 +33,7 @@ function LoginForm({ handleSubmit, valid }) {
 
 LoginForm.propTypes = {
   handleSubmit: func.isRequired,
-  valid: bool.isRequired
+  error: string
 };
 
 export default reduxForm({

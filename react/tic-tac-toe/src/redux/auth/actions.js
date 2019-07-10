@@ -1,5 +1,7 @@
 import authService from '~services/AuthService';
 
+import { SubmissionError } from 'redux-form';
+
 import localStorageService from '~services/LocalStorageService';
 
 import api from '~config/api';
@@ -31,6 +33,7 @@ const actionsCreators = {
       });
     } else {
       dispatch({ type: actions.AUTH_FAILURE, payload: response.problem });
+      throw new SubmissionError({  _error: response.problem  });
     }
   }
 };

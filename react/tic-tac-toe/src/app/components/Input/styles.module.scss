@@ -1,17 +1,19 @@
-@import '../../../scss/colors';
+@import 'src/scss/colors';
+@import 'src/scss/fonts';
 $input-border: $gainsboro-gray;
 $focus-color: $blue-wolox;
-$border-hover: $silver-gray;
+$red-error: $red;
 
 .input {
   border-radius: 0.25rem;
+  color: $black;
   display: block;
-  padding: 18px 14px;
+  padding: 18px 15px;
   width: 100%;
-
   &:focus + .label,
-  &.emty + .label {
-    transform: translate(5px, -45px) scale(0.8);
+  &.empty + .label {
+    font-size: $text-small;
+    transform: translate(10px, -45px);
   }
 
   &:focus + .label {
@@ -33,6 +35,13 @@ $border-hover: $silver-gray;
   &.focus {
     border: 2px solid $focus-color;
   }
+
+  &.borderError {
+    border: 2px solid $red-error;
+    & ~ .label {
+      color: $red-error;
+    }
+  }
 }
 
 
@@ -45,19 +54,20 @@ $border-hover: $silver-gray;
 
 .error {
   bottom: -15px;
-  color: red;
+  color: $red-error;
   display: block;
-  font-size: 10px;
+  font-size: $text-xs;
   padding-left: 5px;
   position: absolute;
 }
 
 .label {
-  background-color: #FFF;
+  background-color: $white;
   bottom: 0;
+  font-size: $text-medium;
   padding: 0 5px;
   pointer-events: none;
   position: absolute;
-  transform: translate(16px, -19px);
-  transition: transform cubic-bezier(0.19,0.83,0.47,0.94)250ms;
+  transform: translate(10px, -19px);
+  transition: transform cubic-bezier(0.19,0.83,0.47,0.94) 200ms, font-size cubic-bezier(0.19,0.83,0.47,0.94) 200ms;
 }

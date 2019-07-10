@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import logo from '../../assets/logo.svg';
 
@@ -10,9 +11,7 @@ import actionsCreators from '~redux/auth/actions';
 import styles from './styles.module.scss';
 
 class Login extends Component {
-  handleOnSubmit = user => {
-    this.props.LogIn(user);
-  };
+  handleOnSubmit = user => this.props.logIn(user);
 
   render() {
     return (
@@ -21,23 +20,20 @@ class Login extends Component {
           <img src={logo} alt="logo-wolox" className={styles.logo} />
           <LoginForm onSubmit={this.handleOnSubmit} />
         </div>
-        {this.props.error && (
-          <>
-            <h3>usuario ó contraseña inválidos</h3>
-          </>
-        )}
       </div>
     );
   }
 }
 
+Login.propTypes = {
+  logIn: PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = dispatch => ({
-  LogIn: user => dispatch(actionsCreators.logIn(user))
+  logIn: user => dispatch(actionsCreators.logIn(user))
 });
 
-const mapStateToProps = ({ auth: { error } }) => ({ error });
-
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Login);

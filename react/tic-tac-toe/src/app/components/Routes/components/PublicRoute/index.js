@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function PublicRoute({ component: Component, authed, ...rest }) {
   const renderComponent = useCallback(props =>
@@ -9,6 +9,9 @@ function PublicRoute({ component: Component, authed, ...rest }) {
   return <Route {...rest} render={renderComponent} />;
 }
 
-PublicRoute.propTypes = {};
+PublicRoute.propTypes = {
+  authed: PropTypes.bool.isRequired,
+  component: PropTypes.func.isRequired
+};
 
 export default PublicRoute;

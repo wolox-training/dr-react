@@ -1,4 +1,32 @@
+@import 'src/scss/colors';
+$red-error: $red;
+$background-error: $pink;
 
 .form {
+  position: relative;
   width: 100%;
+}
+
+.container {
+  align-items: center;
+  background-color: $background-error;
+  border: 1px solid lighten($color: $red-error, $amount: 10);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.logo {
+  fill: $red-error;
+}
+
+.error {
+  color: $red-error;
+  margin-left: 10px;
+}
+
+.button {
+  bottom: -50px;
+  position: absolute;
 }
