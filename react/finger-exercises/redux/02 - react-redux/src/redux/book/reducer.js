@@ -15,17 +15,22 @@ function reducer(state = initialState, action) {
     case actions.ADD_ITEM: {
       const books = [...state.bookSelected];
       const addItem = books.find(book => book.id === action.payload);
-      addItem.quantity += 1;
+      if (addItem) {
+        addItem.quantity += 1;
+      }
       return { ...state, bookSelected: books };
     }
     case actions.REMOVE_ITEM: {
-      const newBooksSelected = state.bookSelected.filter(book => book.id !== action.payload);
-      return { ...state, bookSelected: [...newBooksSelected] };
+      const bookSelected = state.bookSelected.filter(book => book.id !== action.payload);
+      return { ...state, bookSelected };
     }
     case actions.SUBTRACT_ITEM: {
-      const substractItem = { ...state.bookSelected.find(book => book.id === action.payload) };
-      substractItem.quantity -= 1;
-      return { ...state, bookSelected: [...{ ...state.bookSelected }, substractItem] };
+      const books = [...state.bookSelected];
+      const substractItem = books.find(book => book.id === action.payload);
+      if (substractItem) {
+        substractItem.quantity -= 1;
+      }
+      return { ...state, bookSelected: books };
     }
     case actions.SEARCH_ITEM: {
       const books = [...state.originalData];
