@@ -102,7 +102,7 @@ const mapDispatchToProps = dispatch => ({
 
 App.propTypes = {
   books: arrayOf(bookPropType),
-  bookSelected: arrayOf(bookSelectedPropType).isRequired,
+  bookSelected: arrayOf(bookSelectedPropType),
   getBooks: func.isRequired,
   searchBook: func.isRequired,
   addToCart: func.isRequired,
