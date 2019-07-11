@@ -9,7 +9,9 @@ $red-error: $red;
   color: $black;
   display: block;
   padding: 18px 15px;
+  transition: color 200ms ease;
   width: 100%;
+
   &:focus + .label,
   &.empty + .label {
     font-size: $text-small;
@@ -32,6 +34,7 @@ $red-error: $red;
   position: absolute;
   right: 0;
   top: 0;
+  transition: border 200ms cubic-bezier(0.4,0,0.2,1);
   &.focus {
     border: 2px solid $focus-color;
   }
@@ -69,5 +72,5 @@ $red-error: $red;
   pointer-events: none;
   position: absolute;
   transform: translate(10px, -19px);
-  transition: transform cubic-bezier(0.19,0.83,0.47,0.94) 200ms, font-size cubic-bezier(0.19,0.83,0.47,0.94) 200ms;
+  transition: transform cubic-bezier(0.19,0.83,0.47,0.94) 150ms, font-size cubic-bezier(0.19,0.83,0.47,0.94) 150ms;
 }

@@ -18,6 +18,9 @@ const actionsCreators = {
     const session = localStorageService.getValue(actions.AUTH);
     if (session && session.isAuthed) {
       dispatch({ type: actions.AUTH__SUCCESS, payload: session.email });
+      api.setHeaders({
+        Authorization: session.token
+      });
     } else {
       dispatch({ type: actions.AUTH_FAILURE });
     }
@@ -26,14 +29,18 @@ const actionsCreators = {
     dispatch({ type: actions.AUTH });
     const response = await authService.login(user);
     if (response.ok) {
-      localStorageService.setValue(actions.AUTH, { email: user.email, isAuthed: true });
-      dispatch({ type: actions.AUTH__SUCCESS, payload: user.email });
       api.setHeaders({
         Authorization: response.data.token
       });
+      dispatch({ type: actions.AUTH__SUCCESS, payload: user.email });
+      localStorageService.setValue(actions.AUTH, {
+        email: user.email,
+        isAuthed: true,
+        token: response.data.token
+      });
     } else {
       dispatch({ type: actions.AUTH_FAILURE, payload: response.problem });
-      throw new SubmissionError({  _error: response.problem  });
+      throw new SubmissionError({ _error: response.problem });
     }
   }
 };

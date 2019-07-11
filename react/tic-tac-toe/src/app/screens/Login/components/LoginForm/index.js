@@ -16,12 +16,12 @@ import { validate } from '~utils/validations';
 function LoginForm({ handleSubmit, error }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Field type="text" component={Input} name="email" autocomplete="off" label="Email Address *" />
-      <Field type="password" component={Input} name="password" label="Password *" />
+      <Field type="text" component={Input} name="email" autocomplete="off" label="Email address" />
+      <Field type="password" component={Input} name="password" label="Enter your password" />
       {error && (
         <div className={styles.container}>
           <Logo className={styles.logo} />
-          <h3 className={styles.error}>Incorrect username or password.</h3>
+          <h3 className={styles.error}>Incorrect email address or password.</h3>
         </div>
       )}
       <Button type="submit" className={cn(styles.button)}>

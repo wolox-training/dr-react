@@ -5,11 +5,13 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { reducer as form } from 'redux-form';
 
 import { reducer as auth } from './auth/reducer';
+import { reducer as game } from './game/reducer';
 
 export const history = createBrowserHistory();
 
 const reducers = combineReducers({
   auth,
+  game,
   form
 });
 
