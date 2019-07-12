@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function PublicRoute({ component: Component, authed, ...rest }) {
   const renderComponent = useCallback(props =>
-    authed === false ? <Component {...props} /> : <Redirect to="/" />
+    authed === false ? <Component {...props} /> : <Redirect to="/game" />
   );
   return <Route {...rest} render={renderComponent} />;
 }

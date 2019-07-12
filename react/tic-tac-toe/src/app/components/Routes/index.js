@@ -12,8 +12,8 @@ import Login from '~screens/Login';
 function Routes({ authed }) {
   return (
     <Switch>
-      <PublicRoute path="/login" authed={authed} exact component={Login} />
-      <PrivateRoute authed={authed} exact path="/" component={Game} />
+      <PublicRoute path="/" authed={authed} exact component={Login} />
+      <PrivateRoute authed={authed} exact path="/game" component={Game} />
     </Switch>
   );
 }
