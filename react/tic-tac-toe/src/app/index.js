@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import actionsCreators from '~redux/auth/actions';
 
 import Routes from './components/Routes';
-
+import Navbar from './components/Navbar';
 import '../scss/application.scss';
 
 function App({ isAuthed, setUp }) {
@@ -15,7 +15,10 @@ function App({ isAuthed, setUp }) {
   }, []);
   return (
     <Router>
-      <Routes authed={isAuthed} />
+      <>
+        <Navbar />
+        <Routes authed={isAuthed} />
+      </>
     </Router>
   );
 }
