@@ -10,7 +10,8 @@ export const actions = {
   AUTH: '@@AUTH/AUTH',
   AUTH__SUCCESS: '@@AUTH/AUTH_SUCCESS',
   AUTH_FAILURE: '@@AUTH/AUTH_FAILURE',
-  SET_TOKEN: '@@AUTH/SET_TOKEN'
+  SET_TOKEN: '@@AUTH/SET_TOKEN',
+  LOG_OUT: '@@AUTH/LOG_OUT'
 };
 
 const actionsCreators = {
@@ -22,6 +23,7 @@ const actionsCreators = {
         Authorization: session.token
       });
     } else {
+      console.log('tioo!!!');
       dispatch({ type: actions.AUTH_FAILURE });
     }
   },
@@ -42,6 +44,12 @@ const actionsCreators = {
       dispatch({ type: actions.AUTH_FAILURE, payload: response.problem });
       throw new SubmissionError({ _error: response.problem });
     }
+  },
+  logOut: () => dispatch => {
+    dispatch({
+      type: actions.LOG_OUT
+    });
+    localStorageService.removeValue(actions.AUTH);
   }
 };
 
