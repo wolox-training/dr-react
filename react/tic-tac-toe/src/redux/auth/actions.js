@@ -8,7 +8,7 @@ import api from '~config/api';
 
 export const actions = {
   AUTH: '@@AUTH/AUTH',
-  AUTH__SUCCESS: '@@AUTH/AUTH_SUCCESS',
+  AUTH_SUCCESS: '@@AUTH/AUTH_SUCCESS',
   AUTH_FAILURE: '@@AUTH/AUTH_FAILURE',
   SET_TOKEN: '@@AUTH/SET_TOKEN'
 };
