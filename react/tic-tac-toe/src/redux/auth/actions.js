@@ -17,7 +17,7 @@ const actionsCreators = {
   setUp: () => dispatch => {
     const session = localStorageService.getValue(actions.AUTH);
     if (session && session.isAuthed) {
-      dispatch({ type: actions.AUTH__SUCCESS, payload: session.email });
+      dispatch({ type: actions.AUTH_SUCCESS, payload: session.email });
       api.setHeaders({
         Authorization: session.token
       });
@@ -32,7 +32,7 @@ const actionsCreators = {
       api.setHeaders({
         Authorization: response.data.token
       });
-      dispatch({ type: actions.AUTH__SUCCESS, payload: user.email });
+      dispatch({ type: actions.AUTH_SUCCESS, payload: user.email });
       localStorageService.setValue(actions.AUTH, {
         email: user.email,
         isAuthed: true,

@@ -11,7 +11,7 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.AUTH:
       return { ...state, loading: true };
-    case actions.AUTH__SUCCESS:
+    case actions.AUTH_SUCCESS:
       return { isAuthed: true, loading: false, user: action.payload };
     case actions.AUTH_FAILURE:
       return { ...state, isAuthed: false, loading: false, error: action.payload };

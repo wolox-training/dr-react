@@ -13,7 +13,7 @@ const actionsCreators = {
     dispatch({ type: actions.MATCHES });
     const response = await matchesService.getMatches();
     if (response.ok) {
-      dispatch({ type: actions.MATCHES__SUCCESS, payload: response.data });
+      dispatch({ type: actions.MATCHES_SUCCESS, payload: response.data });
     } else {
       dispatch({ type: actions.MATCHES_FAILURE, payload: response.problem });
       throw new SubmissionError({ _error: response.problem });

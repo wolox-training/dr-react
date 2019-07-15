@@ -10,7 +10,7 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.MATCHES:
       return { ...state, loading: true };
-    case actions.MATCHES__SUCCESS:
+    case actions.MATCHES_SUCCESS:
       return { ...state, loading: false, matches: action.payload };
     case actions.MATCHES_FAILURE:
       return { ...state, matches: [], loading: false, error: action.payload };
