@@ -38,7 +38,7 @@ $red-error: $red;
   }
 
   &.focused .label,
-  & .input.empy + .label {
+  &.has-value .label {
     font-size: $text-small;
     transform: translate(10px, -45px);
   }

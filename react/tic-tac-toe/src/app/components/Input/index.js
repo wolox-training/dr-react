@@ -8,20 +8,13 @@ function Input({ label, input, type, autocomplete, id, meta: { submitFailed, err
     <div
       className={cn(styles.container, styles.border, {
         [styles.focused]: active,
-        [styles.error]: submitFailed && error
+        [styles.error]: submitFailed && error,
+        [styles.hasValue]: !!input.value
       })}
     >
-      <input
-        {...input}
-        id={id}
-        autoComplete={autocomplete}
-        className={cn(styles.input, {
-          [styles.empty]: !!input.value
-        })}
-        type={type}
-      />
+      <input {...input} id={id} autoComplete={autocomplete} className={cn(styles.input)} type={type} />
       {label && (
-        <label htmlFor={id} className={cn(styles.label, { [styles.labelError]: error })}>
+        <label htmlFor={id} className={cn(styles.label)}>
           {label}
         </label>
       )}
