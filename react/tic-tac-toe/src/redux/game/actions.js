@@ -4,7 +4,7 @@ import { SubmissionError } from 'redux-form';
 
 export const actions = {
   MATCHES: '@@GAME/MATCHES',
-  MATCHES__SUCCESS: '@@GAME/MATCHES_SUCCESS',
+  MATCHES_SUCCESS: '@@GAME/MATCHES_SUCCESS',
   MATCHES_FAILURE: '@@GAME/MATCHES_FAILURE'
 };
 
