@@ -11,14 +11,14 @@ import authActions from '~redux/auth/actions';
 import styles from './styles.module.scss';
 
 class Login extends Component {
-  handleOnSubmit = user => this.props.logIn(user);
+  handleSubmit = user => this.props.logIn(user);
 
   render() {
     return (
       <div className={styles.login}>
         <div className={styles.container}>
           <img src={logo} alt="logo-wolox" className={styles.logo} />
-          <LoginForm onSubmit={this.handleOnSubmit} />
+          <LoginForm onSubmit={this.handleSubmit} />
         </div>
       </div>
     );
