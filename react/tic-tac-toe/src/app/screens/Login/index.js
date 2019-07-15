@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import logo from '../../assets/logo.svg';
+import logo from '~assets/logo.svg';
 
 import LoginForm from './components/LoginForm';
 

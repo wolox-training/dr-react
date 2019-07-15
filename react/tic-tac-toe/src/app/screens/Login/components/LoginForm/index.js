@@ -7,7 +7,7 @@ import Button from '~components/Button';
 
 import Input from '~components/Input';
 
-import { ReactComponent as Logo } from '../../../../assets/error.svg';
+import { ReactComponent as Logo } from '~assets/error.svg';
 
 import styles from './styles.module.scss';
 
