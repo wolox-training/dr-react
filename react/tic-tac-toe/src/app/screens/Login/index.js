@@ -6,7 +6,7 @@ import logo from '../../assets/logo.svg';
 
 import LoginForm from './components/LoginForm';
 
-import actionsCreators from '~redux/auth/actions';
+import authActions from '~redux/auth/actions';
 
 import styles from './styles.module.scss';
 
@@ -30,7 +30,7 @@ Login.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  logIn: user => dispatch(actionsCreators.logIn(user))
+  logIn: user => dispatch(authActions.logIn(user))
 });
 
 export default connect(

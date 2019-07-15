@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import actionsCreators from '~redux/auth/actions';
+import authActions from '~redux/auth/actions';
 
 import Routes from './components/Routes';
 
@@ -21,7 +21,7 @@ function App({ isAuthed, setUp }) {
 }
 const mapStateToProps = ({ auth: { isAuthed } }) => ({ isAuthed });
 const mapDispatchToProps = dispatch => ({
-  setUp: () => dispatch(actionsCreators.setUp())
+  setUp: () => dispatch(authActions.setUp())
 });
 
 App.propTypes = {
