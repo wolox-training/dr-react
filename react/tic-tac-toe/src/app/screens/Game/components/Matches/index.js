@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Spinner from 'react-spinkit';
 
 import api from '~services/MatchesService';
@@ -12,9 +12,7 @@ class Matches extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.getMatches();
-    }, 3000);
+    this.getMatches();
   }
 
   // recomendacioón de alejo
@@ -42,7 +40,7 @@ class Matches extends Component {
   render() {
     const { matches, loading } = this.state;
     return (
-      <Fragment>
+      <>
         {loading ? (
           <Spinner name="double-bounce" />
         ) : (
@@ -56,7 +54,7 @@ class Matches extends Component {
             ))}
           </ol>
         )}
-      </Fragment>
+      </>
     );
   }
 }
