@@ -7,8 +7,8 @@ function Input({ label, input, type, autocomplete, id, meta: { submitFailed, err
   return (
     <div
       className={cn(styles.container, styles.border, {
-        [styles.focus]: active,
-        [styles.borderError]: submitFailed && error
+        [styles.focused]: active,
+        [styles.error]: submitFailed && error
       })}
     >
       <input
@@ -25,7 +25,8 @@ function Input({ label, input, type, autocomplete, id, meta: { submitFailed, err
           {label}
         </label>
       )}
-      {submitFailed && (error && error !== 'Required' && <span className={styles.error}>{error}</span>)}
+      {submitFailed &&
+        (error && error !== 'Required' && <span className={styles.messageError}>{error}</span>)}
     </div>
   );
 }
