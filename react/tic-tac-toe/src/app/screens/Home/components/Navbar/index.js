@@ -9,7 +9,7 @@ import { ROUTES } from '~constants/routes';
 
 function Navbar() {
   const { user } = useSelector(state => state.auth);
-  const [menu, setMenu] = useState(false);
+  const [showMenu, setMenu] = useState(false);
 
   const renderLinkItems = useCallback(
     ({ path, page }) => (
@@ -23,8 +23,8 @@ function Navbar() {
   );
 
   const handleClick = useCallback(() => {
-    setMenu(!menu);
-  }, [menu]);
+    setMenu(!showMenu);
+  }, [showMenu]);
 
   return (
     <nav className={styles.navbar}>
@@ -32,11 +32,11 @@ function Navbar() {
         <ul className={styles.list}>
           {ROUTES && Object.values(ROUTES).map(renderLinkItems)}
           <li className={styles.item} onClick={handleClick}>
-            {user}
+            <h3 className={styles.link}>{user}</h3>
           </li>
         </ul>
       </div>
-      <Menu customClass={menu} />
+      <Menu showMenu={showMenu} />
     </nav>
   );
 }

@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import logo from '../../assets/logo.svg';
+import logo from '~assets/logo.svg';
 
 import LoginForm from './components/LoginForm';
 
-import actionsCreators from '~redux/auth/actions';
+import authActions from '~redux/auth/actions';
 
 import styles from './styles.module.scss';
 
 class Login extends Component {
-  handleOnSubmit = user => this.props.logIn(user);
+  handleSubmit = user => this.props.logIn(user);
 
   render() {
     return (
       <div className={styles.login}>
         <div className={styles.container}>
           <img src={logo} alt="logo-wolox" className={styles.logo} />
-          <LoginForm onSubmit={this.handleOnSubmit} />
+          <LoginForm onSubmit={this.handleSubmit} />
         </div>
       </div>
     );
@@ -30,7 +30,7 @@ Login.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  logIn: user => dispatch(actionsCreators.logIn(user))
+  logIn: user => dispatch(authActions.logIn(user))
 });
 
 export default connect(

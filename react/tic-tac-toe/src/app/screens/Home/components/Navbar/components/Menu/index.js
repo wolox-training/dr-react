@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { string } from 'prop-types';
+import { bool } from 'prop-types';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 
@@ -7,14 +7,14 @@ import authActions from '~redux/auth/actions';
 
 import styles from './styles.module.scss';
 
-function Menu({ customClass }) {
+function Menu({ showMenu }) {
   const dispatch = useDispatch();
   const hanldeClick = useCallback(() => {
     dispatch(authActions.logOut());
   });
 
   return (
-    <div className={cn(styles.container, { [styles.show]: customClass })}>
+    <div className={cn(styles.container, { [styles.show]: showMenu })}>
       <div className={styles.item} onClick={hanldeClick}>
         Sing out
       </div>
@@ -23,7 +23,7 @@ function Menu({ customClass }) {
 }
 
 Menu.propTypes = {
-  customClass: string
+  showMenu: bool
 };
 
 export default Menu;

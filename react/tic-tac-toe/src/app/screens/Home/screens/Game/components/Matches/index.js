@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import Spinner from 'react-spinkit';
 import { useSelector, useDispatch } from 'react-redux';
 
-import actionsCreators from '~redux/game/actions';
+import gameActions from '~redux/game/actions';
 
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ function Matches() {
   const { loading, matches } = useSelector(state => state.game);
 
   useEffect(() => {
-    dispatch(actionsCreators.getMatches());
+    dispatch(gameActions.getMatches());
   }, []);
 
   return (

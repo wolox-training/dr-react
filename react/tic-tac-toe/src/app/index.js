@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import actionsCreators from '~redux/auth/actions';
+import authActions from '~redux/auth/actions';
 
 import Routes from './components/Routes';
 import '../scss/application.scss';
@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actionsCreators.setUp());
+    dispatch(authActions.setUp());
   }, []);
 
   return (

@@ -7,7 +7,7 @@ import Button from '~components/Button';
 
 import Input from '~components/Input';
 
-import { ReactComponent as Logo } from '../../../../assets/error.svg';
+import { ReactComponent as Logo } from '~assets/error.svg';
 
 import styles from './styles.module.scss';
 
@@ -16,7 +16,7 @@ import { validate } from '~utils/validations';
 function LoginForm({ handleSubmit, error }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Field type="text" component={Input} name="email" autocomplete="off" label="Email address" />
+      <Field type="email" component={Input} name="email" autocomplete="off" label="Email address" />
       <Field type="password" component={Input} name="password" label="Enter your password" />
       {error && (
         <div className={styles.container}>

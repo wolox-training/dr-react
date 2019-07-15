@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 function Button({ children, type, disabled, className }) {
   return (
     // eslint-disable-next-line react/button-has-type
-    <button type={type} disabled={disabled} className={cn(styles.button, { [className]: className })}>
+    <button type={type} disabled={disabled} className={cn(styles.button, className )}>
       {children}
     </button>
   );

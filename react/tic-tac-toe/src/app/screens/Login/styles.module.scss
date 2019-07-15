@@ -1,6 +1,6 @@
 @import 'src/scss/variables';
 @import 'src/scss/colors';
-$margin-top-form: $m-top-30;
+$margin-top-form: $m-negative-top-30;
 
 .login {
   align-items: center;
@@ -24,6 +24,6 @@ $margin-top-form: $m-top-30;
   flex-direction: column;
   justify-content: center;
   margin-top: $margin-top-form;
-  padding: 2rem;
-  width: $width-form-container;
+  padding: 32px;
+  width: $form-container-width;
 }

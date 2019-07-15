@@ -9,7 +9,7 @@
 }
 .container {
   align-items: center;
-  background: rgba(255, 255, 255, 0.98);
+  background: $white;
   box-shadow: rgba(0, 0, 0, 0.06) 0 6px 20px;
   display: flex;
   height: 70px;
@@ -48,7 +48,7 @@
   position: relative;
 
   &:before {
-    background: $blue-wolox;
+    background: $wolox-blue;
     bottom: 0;
     content: '';
     height: 2px;
@@ -56,6 +56,6 @@
     position: absolute;
     transform: scaleX(0);
     transition: transform 200ms ease;
-    width: 100%;;
+    width: 100%;
   }
 }

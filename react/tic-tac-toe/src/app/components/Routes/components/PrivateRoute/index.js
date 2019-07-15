@@ -9,7 +9,7 @@ function PrivateRoute({ component: Component, authed, ...rest }) {
 
 PrivateRoute.propTypes = {
   authed: PropTypes.bool.isRequired,
-  component: PropTypes.func.isRequired
+  component: PropTypes.elementType
 };
 
 export default PrivateRoute;
