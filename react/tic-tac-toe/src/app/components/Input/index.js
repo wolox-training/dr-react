@@ -5,10 +5,12 @@ import styles from './styles.module.scss';
 
 function Input({ label, input, type, autocomplete, id, meta: { submitFailed, error, active } }) {
   return (
-    <div className={styles.container}>
-      <div
-        className={cn(styles.border, { [styles.focus]: active, [styles.borderError]: submitFailed && error })}
-      />
+    <div
+      className={cn(styles.container, styles.border, {
+        [styles.focus]: active,
+        [styles.borderError]: submitFailed && error
+      })}
+    >
       <input
         {...input}
         id={id}
