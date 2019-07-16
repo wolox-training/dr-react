@@ -12,9 +12,9 @@ function Input({ label, input, type, autocomplete, id, meta: { submitFailed, err
         [styles.hasValue]: !!input.value
       })}
     >
-      <input {...input} id={id} autoComplete={autocomplete} className={cn(styles.input)} type={type} />
+      <input {...input} id={id} autoComplete={autocomplete} className={styles.input} type={type} />
       {label && (
-        <label htmlFor={id} className={cn(styles.label)}>
+        <label htmlFor={id} className={styles.label}>
           {label}
         </label>
       )}
