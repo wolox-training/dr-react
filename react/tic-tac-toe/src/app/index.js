@@ -19,7 +19,8 @@ function App({ isAuthed, setUp }) {
     </Router>
   );
 }
-const mapStateToProps = ({ auth: { isAuthed } }) => ({ isAuthed });
+const mapStateToProps = state => ({ isAuthed: state.auth.isAuthed });
+
 const mapDispatchToProps = dispatch => ({
   setUp: () => dispatch(authActions.setUp())
 });

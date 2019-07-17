@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import Spinner from 'react-spinkit';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,7 +15,7 @@ function Matches() {
   }, []);
 
   return (
-    <Fragment>
+    <>
       {loading ? (
         <Spinner name="double-bounce" />
       ) : (
@@ -30,7 +30,7 @@ function Matches() {
             ))}
         </ol>
       )}
-    </Fragment>
+    </>
   );
 }
 
