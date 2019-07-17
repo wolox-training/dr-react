@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ArrayCells } from '~constants/array';
@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 function Board({ squares, onClick }) {
   return (
-    <Fragment>
+    <>
       {ArrayCells.map((cells, idx) => (
         <div key={`row-${idx + 1}`} className={styles.boardRow}>
           {cells.map(j => (
@@ -17,7 +17,7 @@ function Board({ squares, onClick }) {
           ))}
         </div>
       ))}
-    </Fragment>
+    </>
   );
 }
 
