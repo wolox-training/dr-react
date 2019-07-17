@@ -58,7 +58,7 @@ class Game extends Component {
           <ol>{history.map(this.renderMoves)}</ol>
         </div>
         <div className={styles.gameInfo}>
-          <div>Matches</div>
+          <div>Partidas</div>
           <Matches />
         </div>
       </div>

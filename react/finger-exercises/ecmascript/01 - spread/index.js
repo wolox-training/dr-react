@@ -1,25 +1,20 @@
 import isArray from './utils';
 
-const returnOneArray = (array) => array.reduce((acc, val) => acc.concat(val), []);
-
 function min(...params) {
   if (params.length === 0) return undefined;
-
-  return isArray(...params)
-    ? Math.min(...returnOneArray(params))
-    : Math.min(...params);
+  const arrayValue = isArray(params[0]) ? params[0] : params;
+  return Math.min(...arrayValue);
 }
 
-function copy(copiedArray) {
-  return isArray(copiedArray) ? [...copiedArray] : { ...copiedArray };
+function copy(element) {
+  return isArray(element) ? [...element] : { ...element };
 }
 
-function reverseMerge(...params) {
-  return params.reduceRight((acc, val) => acc.concat(val));
+function reverseMerge(arrayOne, arrayTwo) {
+  return [...arrayTwo, ...arrayOne];
 }
 
-function filterAttribs(objectFilter) {
-  const { a, b, ...restObject } = objectFilter;
+function filterAttribs({ a, b, ...restObject }) {
   return restObject;
 }
 
