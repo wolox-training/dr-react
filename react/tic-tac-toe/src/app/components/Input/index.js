@@ -18,8 +18,7 @@ function Input({ label, input, type, autocomplete, id, meta: { submitFailed, err
           {label}
         </label>
       )}
-      {submitFailed &&
-        (error && error !== 'Required' && <span className={styles.messageError}>{error}</span>)}
+      {submitFailed && (error && <span className={styles.messageError}>{error}</span>)}
     </div>
   );
 }

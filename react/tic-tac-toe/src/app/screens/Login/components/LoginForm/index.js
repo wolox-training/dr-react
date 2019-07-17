@@ -10,14 +10,32 @@ import ErrorMessage from '~components/ErrorMessage';
 
 import styles from './styles.module.scss';
 
-import { validate } from '~utils/validations';
+import { VALIDATION } from '~utils/validations';
+
+const VALIDATIONS = {
+  email: [VALIDATION.required, VALIDATION.email],
+  password: [VALIDATION.required, VALIDATION.minLengthEight]
+};
 
 function LoginForm({ handleSubmit, error }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Field type="email" component={Input} name="email" autocomplete="off" label="Email address" />
-      <Field type="password" component={Input} name="password" label="Enter your password" />
-      {error && <ErrorMessage error={error} />}
+      <Field
+        type="email"
+        component={Input}
+        name="email"
+        validate={VALIDATIONS.email}
+        autocomplete="off"
+        label="Email address"
+      />
+      <Field
+        type="password"
+        component={Input}
+        name="password"
+        validate={VALIDATIONS.password}
+        label="Enter your password"
+      />
+      <ErrorMessage error={error} />
       <Button type="submit" className={styles.button}>
         Login
       </Button>
@@ -31,6 +49,5 @@ LoginForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'user',
-  validate
+  form: 'user'
 })(LoginForm);
