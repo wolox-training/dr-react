@@ -5,6 +5,7 @@ import { calculateWinner } from '~utils/game';
 import styles from './styles.module.scss';
 import Board from './components/Board';
 import Moves from './components/Moves';
+import Matches from './components/Matches';
 
 class Game extends Component {
   state = {
@@ -55,6 +56,10 @@ class Game extends Component {
         <div className={styles.gameInfo}>
           <div>{status}</div>
           <ol>{history.map(this.renderMoves)}</ol>
+        </div>
+        <div className={styles.gameInfo}>
+          <div>Partidas</div>
+          <Matches />
         </div>
       </div>
     );
