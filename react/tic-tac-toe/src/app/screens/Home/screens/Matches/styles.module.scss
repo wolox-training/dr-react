@@ -16,9 +16,10 @@ $text-winner-color: $wolox-green;
 }
 
 .matches {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto, 1fr);
 }
 
 .player {

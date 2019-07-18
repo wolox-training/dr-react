@@ -6,5 +6,9 @@ export const ROUTES = {
   game: {
     path: '/game',
     page: 'Game'
+  },
+  settings: {
+    path: '/settings',
+    page: 'Settings'
   }
 };
