@@ -6,6 +6,8 @@ import localStorageService from '~services/LocalStorageService';
 
 import api from '~config/api';
 
+import ERRORS from '~constants/errors';
+
 export const actions = {
   AUTH: '@@AUTH/AUTH',
   AUTH_SUCCESS: '@@AUTH/AUTH_SUCCESS',
@@ -41,8 +43,8 @@ const actionsCreators = {
         token: response.data.token
       });
     } else {
-      dispatch({ type: actions.AUTH_FAILURE, payload: response.problem });
-      throw new SubmissionError({ _error: response.problem });
+      dispatch({ type: actions.AUTH_FAILURE, payload: ERRORS[response.problem] });
+      throw new SubmissionError({ _error: ERRORS[response.problem] });
     }
   },
   logOut: () => dispatch => {

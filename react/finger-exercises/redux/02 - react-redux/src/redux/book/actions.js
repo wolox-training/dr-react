@@ -11,7 +11,8 @@ export const actions = {
   ADD_TO_CART: '@@BOOK/ADD_TO_CART',
   ADD_ITEM: '@@BOOK/ADD_ITEM',
   REMOVE_ITEM: '@@BOOK/REMOVE_ITEM',
-  SEARCH_ITEM: '@@BOOK/SEARCH_ITEM'
+  SEARCH_ITEM: '@@BOOK/SEARCH_ITEM',
+  SUBTRACT_ITEM: '@@BOOK/SUBTRACT_ITEM'
 };
 
 const actionsCreators = {
@@ -25,6 +26,10 @@ const actionsCreators = {
   }),
   addItem: itemId => ({
     type: actions.ADD_ITEM,
+    payload: itemId
+  }),
+  subtractItem: itemId => ({
+    type: actions.SUBTRACT_ITEM,
     payload: itemId
   }),
   removeItem: itemId => ({
