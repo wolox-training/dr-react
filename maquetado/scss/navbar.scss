@@ -1,0 +1,18 @@
+.nav {
+  align-items: center;
+  background-color: $white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  display: flex;
+  height: $nav-height;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  &-img {
+    width: 200px;
+  }
+}

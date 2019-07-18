@@ -1,3 +1,19 @@
-.title {
-  color: red;
+.section-project {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-rows: auto 1fr;
+  padding: 2rem;
+
+  &:first-of-type {
+    margin: 100px auto;
+  }
+}
+
+.m-bottom-1 {
+  margin: 0 0 1rem 0;
+}
+
+.large-container {
+  margin: 0 auto;
+  max-width: 1600px;
 }

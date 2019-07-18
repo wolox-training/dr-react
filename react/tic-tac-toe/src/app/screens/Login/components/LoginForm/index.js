@@ -6,11 +6,16 @@ import Button from '~components/Button';
 
 import InputWrapper from '~components/InputWrapper';
 
-import { ReactComponent as Logo } from '~assets/error.svg';
+import ErrorMessage from '~components/ErrorMessage';
 
 import styles from './styles.module.scss';
 
-import { validate } from '~utils/validations';
+import { VALIDATION } from '~utils/validations';
+
+const VALIDATIONS = {
+  email: [VALIDATION.required, VALIDATION.email],
+  password: [VALIDATION.required, VALIDATION.minLength(8)]
+};
 
 function LoginForm({ handleSubmit, error }) {
   return (
@@ -22,21 +27,21 @@ function LoginForm({ handleSubmit, error }) {
         name="email"
         autocomplete="off"
         label="Email address"
+        validate={VALIDATIONS.email}
       />
       <Field
         type="password"
         typeField="input"
         component={InputWrapper}
         name="password"
+        validate={VALIDATIONS.password}
         label="Enter your password"
       />
-      {error && (
-        <div className={styles.container}>
-          <Logo className={styles.logo} />
-          <h3 className={styles.error}>Incorrect email address or password.</h3>
-        </div>
-      )}
-      <Button type="submit">Login</Button>
+      <ErrorMessage error={error} />
+      <Button type="submit" className={styles.button}>
+        Login
+      </Button>
+
     </form>
   );
 }
@@ -47,6 +52,5 @@ LoginForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'user',
-  validate
+  form: 'user'
 })(LoginForm);

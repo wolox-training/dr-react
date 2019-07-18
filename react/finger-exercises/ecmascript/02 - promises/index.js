@@ -3,7 +3,7 @@
 export function delay(TIME) {
   const startTime = Date.now();
   return new Promise((resolve, reject) => {
-    if (TIME > 4999) reject(Error('This time is too much !'));
+    if (TIME > 500) reject(Error('This time is too much !'));
     setInterval(() => {
       const endTime = Date.now();
       const delayTime = endTime - startTime;

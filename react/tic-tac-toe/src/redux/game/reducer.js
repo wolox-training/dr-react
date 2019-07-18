@@ -18,9 +18,7 @@ const initialState = {
   error: '',
   settings: localStorageService.getValue(actions.GAME_SETTIGNS) || initialSettings
 };
-(() => (
-  console.log(actions.GAME_SETTIGNS), console.log(localStorageService.getValue(actions.GAME_SETTIGNS))
-))();
+
 function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.MATCHES:
