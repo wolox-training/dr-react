@@ -1,11 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-function Select({ input, children, theme }) {
+function Select({ input, theme, options, id }) {
   return (
-    <select {...input} className={cn(theme)}>
-      {children}
+    <select {...input} id={id} className={cn(theme)}>
+      {options &&
+        options.map(opt => (
+          <option key={opt.label} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
     </select>
   );
 }

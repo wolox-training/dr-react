@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { calculateWinner } from '~utils/game';
 
@@ -15,6 +16,7 @@ class Game extends Component {
 
   handleClick = i => {
     const { history, xIsNext, stepNumber } = this.state;
+    const { settings } = this.props;
     const newHistoryPoint = history.slice(0, stepNumber + 1);
     const current = newHistoryPoint[newHistoryPoint.length - 1];
     const squares = [...current.squares];
@@ -22,7 +24,7 @@ class Game extends Component {
       return;
     }
 
-    squares[i] = xIsNext ? '🤴🏽' : '👸🏽';
+    squares[i] = xIsNext ? settings.player_one : settings.player_two;
 
     this.setState(prevState => ({
       history: newHistoryPoint.concat([{ squares }]),
@@ -61,4 +63,6 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({ settings: state.game.settings });
+
+export default connect(mapStateToProps)(Game);

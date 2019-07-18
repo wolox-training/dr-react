@@ -1,13 +1,21 @@
-import React, { PureComponent } from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 import SettingsForm from './components/SettingsForm';
 
-export class Settings extends PureComponent {
-  handleSubmit = user => console.log(user);
+import gameActions from '~redux/game/actions';
 
-  render() {
-    return <SettingsForm onSubmit={this.handleSubmit} />;
-  }
+import styles from './styles.module.scss';
+
+function Settings() {
+  const dispatch = useDispatch();
+  const handleSubmit = useCallback(user => dispatch(gameActions.setGameSettings(user)));
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Configuración de jugadores</h1>
+      <SettingsForm form="players" onSubmit={handleSubmit} />
+    </div>
+  );
 }
 
 export default Settings;

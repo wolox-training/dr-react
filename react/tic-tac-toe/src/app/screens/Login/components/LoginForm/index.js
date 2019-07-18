@@ -1,7 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { func, string } from 'prop-types';
-import cn from 'classnames';
 
 import Button from '~components/Button';
 
@@ -37,9 +36,7 @@ function LoginForm({ handleSubmit, error }) {
           <h3 className={styles.error}>Incorrect email address or password.</h3>
         </div>
       )}
-      <Button type="submit" className={cn(styles.button)}>
-        Login
-      </Button>
+      <Button type="submit">Login</Button>
     </form>
   );
 }

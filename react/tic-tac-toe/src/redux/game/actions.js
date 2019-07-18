@@ -1,11 +1,14 @@
 import matchesService from '~services/MatchesService';
 
+import localStorageService from '~services/LocalStorageService';
+
 import { SubmissionError } from 'redux-form';
 
 export const actions = {
   MATCHES: '@@GAME/MATCHES',
   MATCHES_SUCCESS: '@@GAME/MATCHES_SUCCESS',
-  MATCHES_FAILURE: '@@GAME/MATCHES_FAILURE'
+  MATCHES_FAILURE: '@@GAME/MATCHES_FAILURE',
+  GAME_SETTIGNS: '@@GAME/GAME_SETTIGNS'
 };
 
 const actionsCreators = {
@@ -18,6 +21,10 @@ const actionsCreators = {
       dispatch({ type: actions.MATCHES_FAILURE, payload: response.problem });
       throw new SubmissionError({ _error: response.problem });
     }
+  },
+  setGameSettings: value => dispatch => {
+    localStorageService.setValue(actions.GAME_SETTIGNS, { ...value });
+    dispatch({ type: actions.GAME_SETTIGNS, payload: value });
   }
 };
 

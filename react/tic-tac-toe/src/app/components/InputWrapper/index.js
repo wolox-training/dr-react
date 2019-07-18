@@ -6,8 +6,8 @@ import styles from './styles.module.scss';
 import FIELDS from '~constants/fieldComponentsArray';
 
 function InputWrapper({
-  children,
   typeField,
+  customStyles,
   label,
   input,
   id,
@@ -17,15 +17,13 @@ function InputWrapper({
   const FieldComponent = FIELDS[typeField];
   return (
     <div
-      className={cn(styles.container, styles.border, {
+      className={cn(styles.container, styles.border, customStyles, {
         [styles.focused]: active,
         [styles.error]: submitFailed && error,
         [styles.hasValue]: !!input.value
       })}
     >
-      <FieldComponent {...props} input={input} theme={cn(styles.input)}>
-        {children}
-      </FieldComponent>
+      <FieldComponent {...props} input={input} theme={cn(styles.input)} />
       {label && (
         <label htmlFor={id} className={cn(styles.label)}>
           {label}
