@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 import Button from '~components/Button';
 
-import Input from '~components/Input';
+import InputWrapper from '~components/InputWrapper';
 
 import { ReactComponent as Logo } from '~assets/error.svg';
 
@@ -16,8 +16,21 @@ import { validate } from '~utils/validations';
 function LoginForm({ handleSubmit, error }) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <Field type="email" component={Input} name="email" autocomplete="off" label="Email address" />
-      <Field type="password" component={Input} name="password" label="Enter your password" />
+      <Field
+        type="email"
+        typeField="input"
+        component={InputWrapper}
+        name="email"
+        autocomplete="off"
+        label="Email address"
+      />
+      <Field
+        type="password"
+        typeField="input"
+        component={InputWrapper}
+        name="password"
+        label="Enter your password"
+      />
       {error && (
         <div className={styles.container}>
           <Logo className={styles.logo} />
