@@ -11,7 +11,7 @@ const ERRORS = {
 export const ERRORS_FORM = {
   email: 'Invalid email address',
   required: 'Field is required',
-  minLengthEight: 'Must be 8 characters or more'
+  minLength: min => `Must be ${min} characters or more`
 };
 
 export default ERRORS;

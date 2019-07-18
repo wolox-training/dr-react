@@ -14,7 +14,7 @@ import { VALIDATION } from '~utils/validations';
 
 const VALIDATIONS = {
   email: [VALIDATION.required, VALIDATION.email],
-  password: [VALIDATION.required, VALIDATION.minLengthEight]
+  password: [VALIDATION.required, VALIDATION.minLength(8)]
 };
 
 function LoginForm({ handleSubmit, error }) {
