@@ -15,7 +15,7 @@ function Menu({ showMenu }) {
 
   return (
     <div className={cn(styles.container, { [styles.show]: showMenu })}>
-      <div className={styles.item} onClick={hanldeClick}>
+      <div className={styles.item} onClick={handleClick}>
         Sign out
       </div>
     </div>

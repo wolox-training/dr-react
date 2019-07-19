@@ -25,7 +25,6 @@ const actionsCreators = {
         Authorization: session.token
       });
     } else {
-      console.log('tioo!!!');
       dispatch({ type: actions.AUTH_FAILURE });
     }
   },
