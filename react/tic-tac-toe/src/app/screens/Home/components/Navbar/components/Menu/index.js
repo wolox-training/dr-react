@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 function Menu({ showMenu }) {
   const dispatch = useDispatch();
-  const hanldeClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     dispatch(authActions.logOut());
   });
 
