@@ -7,3 +7,8 @@ export const matchPropType = shape({
   createdAt: string,
   id: number
 });
+
+export const settingsPropType = shape({
+  playerOne: string,
+  playerTwo: string
+});

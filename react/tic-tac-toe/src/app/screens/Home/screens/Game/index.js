@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { calculateWinner } from '~utils/game';
 
+import { settingsPropType } from '~constants/propTypes';
+
 import styles from './styles.module.scss';
 import Board from './components/Board';
 import Moves from './components/Moves';
@@ -43,11 +45,14 @@ class Game extends Component {
   renderMoves = (_step, move) => <Moves key={`move-${move + 1}`} onClick={this.handleJumpTo} move={move} />;
 
   render() {
+    const { settings } = this.props;
     const { history, xIsNext, stepNumber } = this.state;
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
 
-    const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`;
+    const status = winner
+      ? `Winner: ${winner}`
+      : `Next player: ${xIsNext ? settings.player_one : settings.player_two}`;
 
     return (
       <div className={styles.game}>
@@ -64,5 +69,9 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({ settings: state.game.settings });
+
+Game.propTypes = {
+  settings: settingsPropType
+};
 
 export default connect(mapStateToProps)(Game);
