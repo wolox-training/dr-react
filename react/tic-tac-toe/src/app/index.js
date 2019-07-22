@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import authActions from '~redux/auth/actions';
 
 import Routes from './components/Routes';
+
 import '../scss/application.scss';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(authActions.setUp());
+    dispatch(authActions.getLocalStorageValue());
   }, []);
 
   return (
