@@ -16,8 +16,6 @@ const initialSettings = {
 
 const initialState = {
   matches: [],
-  loading: false,
-  error: '',
   settings: localStorageService.getValue(actions.GAME_SETTIGNS) || initialSettings
 };
 
