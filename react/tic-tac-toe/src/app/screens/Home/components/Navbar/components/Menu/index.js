@@ -9,14 +9,14 @@ import styles from './styles.module.scss';
 
 function Menu({ showMenu }) {
   const dispatch = useDispatch();
-  const hanldeClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     dispatch(authActions.logOut());
   });
 
   return (
     <div className={cn(styles.container, { [styles.show]: showMenu })}>
-      <div className={styles.item} onClick={hanldeClick}>
-        Sing out
+      <div className={styles.item} onClick={handleClick}>
+        Sign out
       </div>
     </div>
   );

@@ -4,5 +4,25 @@ module.exports = {
   rules: {
     'no-magic-numbers': 0,
     'class-methods-use-this': 0
+  },
+  settings: {
+    'import/resolver': {
+      node: {},
+      'babel-module': {
+        alias: {
+          '~scss': './src/scss',
+          '~screens': './src/app/screens',
+          '~config': './src/config',
+          '~constants': './src/constants',
+          '~redux': './src/redux',
+          '~services': './src/services',
+          '~utils': './src/utils',
+          '~propTypes': './src/propTypes'
+        }
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
   }
 };
