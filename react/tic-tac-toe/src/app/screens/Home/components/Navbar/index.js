@@ -19,14 +19,13 @@ function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {ROUTES &&
-            Object.values(ROUTES).map(({ path, page }) => (
-              <li key={page} className={styles.item}>
-                <NavLink to={path} className={styles.link}>
-                  {page}
-                </NavLink>
-              </li>
-            ))}
+          {Object.values(ROUTES).map(({ path, page }) => (
+            <li key={page} className={styles.item}>
+              <NavLink to={path} className={styles.link}>
+                {page}
+              </NavLink>
+            </li>
+          ))}
           <li className={styles.item} onClick={handleClick}>
             <h3 className={styles.link}>{user}</h3>
           </li>
@@ -36,7 +35,5 @@ function Navbar() {
     </nav>
   );
 }
-
-Navbar.propTypes = {};
 
 export default Navbar;
