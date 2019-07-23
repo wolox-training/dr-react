@@ -1,4 +1,4 @@
-import { completeReducer, createReducer } from 'redux-recompose';
+import { completeReducer, createReducer, completeState } from 'redux-recompose';
 
 import { actions } from './actions';
 
@@ -14,7 +14,7 @@ const initialSettings = {
   [SETTINGS_FIELDS.PLAYER_TWO]: '👸🏽'
 };
 
-const initialState = {
+const initialStateDescription = {
   matches: [],
   settings: localStorageService.getValue(actions.GAME_SETTIGNS) || initialSettings
 };
@@ -25,6 +25,8 @@ const reducerDescription = {
     [actions.GAME_SETTINGS]: (state, action) => ({ ...state, [action.target]: action.payload })
   }
 };
+
+const initialState = completeState(initialStateDescription, ['settings']);
 
 const reducer = createReducer(initialState, completeReducer(reducerDescription));
 
