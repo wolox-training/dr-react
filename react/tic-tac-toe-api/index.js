@@ -19,6 +19,19 @@ server.use((req, res, next) => {
 })
 
 server.use((req, res, next) => {
+  if (req.method == 'GET' && req.path == '/matches') {
+    const matches = router.db.get('matches')
+    if(matches){
+      setTimeout(()=>{
+        res.status(200).send(matches);
+      }, 3000)
+    }
+  } else {
+    next();
+  }
+})
+
+server.use((req, res, next) => {
   // Handle login
   if (req.method == 'POST' && req.path == '/login') {
     const user = router.db.get('users').find({ email: req.body.email, password: req.body.password }).value();
