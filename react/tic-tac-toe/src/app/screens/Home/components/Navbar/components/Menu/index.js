@@ -9,9 +9,7 @@ import styles from './styles.module.scss';
 
 function Menu({ showMenu }) {
   const dispatch = useDispatch();
-  const handleClick = useCallback(() => {
-    dispatch(authActions.logOut());
-  });
+  const handleClick = useCallback(() => dispatch(authActions.logOut()));
 
   return (
     <div className={cn(styles.container, { [styles.show]: showMenu })}>

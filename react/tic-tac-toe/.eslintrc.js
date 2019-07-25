@@ -10,6 +10,7 @@ module.exports = {
       node: {},
       'babel-module': {
         alias: {
+          "~components": "./src/app/components",
           '~scss': './src/scss',
           '~screens': './src/app/screens',
           '~config': './src/config',
