@@ -19,7 +19,7 @@ class Game extends Component {
   handleClick = i => {
     const { history, xIsNext, stepNumber } = this.state;
     const { settings } = this.props;
-    const newHistoryPoint = history.slice(0, stepNumber + 1);
+    const newHistoryEntry = history.slice(0, stepNumber + 1);
     const current = newHistoryPoint[newHistoryPoint.length - 1];
     const squares = [...current.squares];
     if (calculateWinner(squares) || squares[i]) {
