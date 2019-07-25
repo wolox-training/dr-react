@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 import Button from '~components/Button';
 
-import SETTINGS_FIELDS from '~constants/form';
+import { SETTINGS_FIELDS } from '~constants/form';
 
 const optionSelect = [
   { value: '👊🏽', label: '👊🏽' },

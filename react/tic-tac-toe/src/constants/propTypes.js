@@ -1,5 +1,7 @@
 import { number, string, shape } from 'prop-types';
 
+import { SETTINGS_FIELDS } from '~constants/form';
+
 export const matchPropType = shape({
   playerOne: string,
   playerTwo: string,
@@ -9,6 +11,6 @@ export const matchPropType = shape({
 });
 
 export const settingsPropType = shape({
-  playerOne: string,
-  playerTwo: string
+  [SETTINGS_FIELDS.PLAYER_ONE]: string.isRequired,
+  [SETTINGS_FIELDS.PLAYER_TWO]: string.isRequired
 });
