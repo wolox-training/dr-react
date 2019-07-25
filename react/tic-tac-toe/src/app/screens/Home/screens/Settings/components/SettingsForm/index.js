@@ -8,6 +8,8 @@ import styles from './styles.module.scss';
 
 import Button from '~components/Button';
 
+import SETTINGS_FIELDS from '~constants/form';
+
 const optionSelect = [
   { value: '👊🏽', label: '👊🏽' },
   { value: '👸🏽', label: '👸🏽' },
@@ -25,7 +27,7 @@ function SettingsForm({ handleSubmit }) {
           component={InputWrapper}
           typeField="select"
           options={optionSelect}
-          name="player_one"
+          name={SETTINGS_FIELDS.PLAYER_ONE}
           label="Emoji P1"
           customStyles={styles.margin}
         />
@@ -33,11 +35,11 @@ function SettingsForm({ handleSubmit }) {
           component={InputWrapper}
           typeField="select"
           options={optionSelect}
-          name="player_two"
+          name={SETTINGS_FIELDS.PLAYER_TWO}
           label="Emoji P2"
           customStyles={styles.margin}
         />
-        <Button type="submit" disabled={false} onClick={handleClick}>
+        <Button type="submit" onClick={handleClick}>
           Save
         </Button>
       </form>
