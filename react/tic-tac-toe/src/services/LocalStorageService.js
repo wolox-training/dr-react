@@ -1,8 +1,8 @@
-function utoa(str) {
+function encondeValue(str) {
   return window.btoa(unescape(encodeURIComponent(str)));
 }
 
-function atou(str) {
+function decodeValue(str) {
   return decodeURIComponent(escape(window.atob(str)));
 }
 
@@ -10,9 +10,9 @@ function setValue(key, value) {
   if (!value && value !== false) {
     return;
   }
-  const encodedKey = utoa(key);
+  const encodedKey = encondeValue(key);
   const stringValue = JSON.stringify(value);
-  const encodedValue = utoa(stringValue);
+  const encodedValue = encondeValue(stringValue);
   try {
     window.localStorage.setItem(encodedKey, encodedValue);
   } catch (e) {
@@ -21,10 +21,10 @@ function setValue(key, value) {
 }
 
 function getValue(key) {
-  const encodedKey = utoa(key);
+  const encodedKey = encondeValue(key);
   try {
     const encodedValue = window.localStorage.getItem(encodedKey);
-    const stringValue = encodedValue && atou(encodedValue);
+    const stringValue = encodedValue && decodeValue(encodedValue);
     return stringValue && JSON.parse(stringValue);
   } catch (e) {
     throw Error('Error: ', e);
@@ -32,7 +32,7 @@ function getValue(key) {
 }
 
 function removeValue(key) {
-  const encodedKey = utoa(key);
+  const encodedKey = encondeValue(key);
   try {
     window.localStorage.removeItem(encodedKey);
   } catch (e) {

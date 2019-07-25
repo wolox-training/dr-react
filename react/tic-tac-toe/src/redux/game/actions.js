@@ -25,7 +25,7 @@ const actionsCreators = {
     }
   },
   setGameSettings: value => dispatch => {
-    localStorageService.setValue(actions.GAME_SETTIGNS, { ...value });
+    localStorageService.setValue(actions.GAME_SETTIGNS, value);
     dispatch({ type: actions.GAME_SETTIGNS, payload: value });
   }
 };
