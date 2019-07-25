@@ -15,6 +15,8 @@ function reducer(state = initialState, action) {
       return { isAuthed: true, loading: false, user: action.payload };
     case actions.AUTH_FAILURE:
       return { ...state, isAuthed: false, loading: false, error: action.payload };
+    case actions.LOG_OUT:
+      return { ...state, isAuthed: false };
     default:
       return state;
   }

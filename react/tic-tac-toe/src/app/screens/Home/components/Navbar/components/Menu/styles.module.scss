@@ -1,0 +1,25 @@
+@import 'src/scss/colors';
+@import 'src/scss/variables';
+
+.container {
+  align-items: center;
+  background: $white;
+  box-shadow: $default-box-shadow;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  transform: translate(-10px, -100%);
+  transition: transform;
+  transition-duration: $default-transition-duration * 4;
+  transition-timing-function: $menu-transition-timing;
+}
+
+.show {
+  transform: translate(-10px, 10px);
+}
+
+.item {
+  cursor: pointer;
+  padding: 16px 32px;
+}

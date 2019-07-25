@@ -1,36 +1,25 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
 import authActions from '~redux/auth/actions';
 
 import Routes from './components/Routes';
-
 import '../scss/application.scss';
 
-function App({ isAuthed, setUp }) {
+function App() {
+  const { isAuthed } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    setUp();
+    dispatch(authActions.setUp());
   }, []);
+
   return (
     <Router>
       <Routes authed={isAuthed} />
     </Router>
   );
 }
-const mapStateToProps = state => ({ isAuthed: state.auth.isAuthed });
 
-const mapDispatchToProps = dispatch => ({
-  setUp: () => dispatch(authActions.setUp())
-});
-
-App.propTypes = {
-  isAuthed: PropTypes.bool.isRequired,
-  setUp: PropTypes.func.isRequired
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;
