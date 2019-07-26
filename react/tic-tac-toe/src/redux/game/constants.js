@@ -1,4 +1,4 @@
-export const GAME_SETTINGS = 'GAME_SETTINGS';
+export const SET_SETTINGS = 'SET_SETTINGS';
 
 export const MATCHES_TARGET = 'matches';
 

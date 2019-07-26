@@ -7,9 +7,9 @@ import localStorageService from '~services/LocalStorageService';
 
 import ERRORS from '~constants/errors';
 
-import { GAME_SETTINGS, MATCHES_TARGET, SETTINGS_TARGET } from './constants';
+import { SET_SETTINGS, MATCHES_TARGET, SETTINGS_TARGET } from './constants';
 
-export const actions = createTypes(completeTypes(['MATCHES'], ['GAME_SETTINGS']), '@@GAME');
+export const actions = createTypes(completeTypes(['MATCHES'], ['SET_SETTINGS']), '@@GAME');
 
 const actionsCreators = {
   getMatches: () => ({
@@ -24,8 +24,8 @@ const actionsCreators = {
     ]
   }),
   setGameSettings: value => dispatch => {
-    localStorageService.setValue(GAME_SETTINGS, { ...value });
-    dispatch({ type: actions.GAME_SETTINGS, target: SETTINGS_TARGET, payload: value });
+    localStorageService.setValue(SET_SETTINGS, value);
+    dispatch({ type: actions.SET_SETTINGS, target: SETTINGS_TARGET, payload: value });
   }
 };
 

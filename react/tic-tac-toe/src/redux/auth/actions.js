@@ -5,7 +5,7 @@ import authService from '~services/AuthService';
 
 import localStorageService from '~services/LocalStorageService';
 
-import { setApiHeaders } from '~utils/setApiHeaders';
+import { setApiHeaders } from '~utils/api';
 
 import ERRORS from '~constants/errors';
 
