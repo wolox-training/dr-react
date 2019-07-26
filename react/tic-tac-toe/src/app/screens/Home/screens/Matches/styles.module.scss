@@ -1,9 +1,10 @@
 @import 'src/scss/colors.scss';
 $text-player: $black;
 $text-winner-color: $wolox-green;
+
 .match {
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) ;
   display: flex;
   flex-basis: 200px;
   flex-direction: column;

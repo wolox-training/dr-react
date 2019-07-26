@@ -16,7 +16,7 @@ const initialState = {
   matches: [],
   loading: false,
   error: '',
-  settings: localStorageService.getValue(actions.GAME_SETTIGNS) || initialSettings
+  settings: localStorageService.getValue(actions.SET_SETTINGS) || initialSettings
 };
 
 function reducer(state = initialState, action) {
@@ -27,7 +27,7 @@ function reducer(state = initialState, action) {
       return { ...state, loading: false, matches: action.payload };
     case actions.MATCHES_FAILURE:
       return { ...state, matches: [], loading: false, error: action.payload };
-    case actions.GAME_SETTIGNS:
+    case actions.SET_SETTINGS:
       return { ...state, settings: action.payload };
     default:
       return state;

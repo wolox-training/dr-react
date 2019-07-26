@@ -37,10 +37,12 @@ $red-error: $red;
     }
   }
 
-  &.focused .label,
-  &.has-value .label {
-    font-size: $text-small;
-    transform: translate(10px, -45px);
+  &.focused,
+  &.has-value {
+    .label {
+      font-size: $text-small;
+      transform: translate(10px, -45px);
+    }
   }
 
   &.error {

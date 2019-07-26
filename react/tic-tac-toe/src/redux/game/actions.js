@@ -10,7 +10,7 @@ export const actions = {
   MATCHES: '@@GAME/MATCHES',
   MATCHES_SUCCESS: '@@GAME/MATCHES_SUCCESS',
   MATCHES_FAILURE: '@@GAME/MATCHES_FAILURE',
-  GAME_SETTIGNS: '@@GAME/GAME_SETTIGNS'
+  SET_SETTINGS: '@@GAME/SET_SETTINGS'
 };
 
 const actionsCreators = {
@@ -25,8 +25,8 @@ const actionsCreators = {
     }
   },
   setGameSettings: value => dispatch => {
-    localStorageService.setValue(actions.GAME_SETTIGNS, value);
-    dispatch({ type: actions.GAME_SETTIGNS, payload: value });
+    localStorageService.setValue(actions.SET_SETTINGS, value);
+    dispatch({ type: actions.SET_SETTINGS, payload: value });
   }
 };
 

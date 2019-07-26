@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+/* eslint-disable react/jsx-no-bind */
+import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
@@ -19,7 +20,7 @@ const optionSelect = [
 
 function SettingsForm({ handleSubmit }) {
   const [success, setSuccess] = useState(false);
-  const handleClick = useCallback(() => setSuccess(!success));
+  const handleClick = () => setSuccess(true);
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit}>
