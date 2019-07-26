@@ -18,10 +18,14 @@ $next-player-color: $wolox-green;
   padding: 0;
   text-align: center;
   width: 100px;
-}
 
-.square:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: darken($color: $square-background, $amount: 10);
+  }
 }
 
 .next-player {

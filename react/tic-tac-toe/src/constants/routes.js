@@ -1,5 +1,5 @@
 export const ROUTES = {
-  about: {
+  matches: {
     path: '/matches',
     page: 'Matches'
   },

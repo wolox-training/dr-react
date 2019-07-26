@@ -41,7 +41,6 @@ function LoginForm({ handleSubmit, error }) {
       <Button type="submit" className={styles.button}>
         Login
       </Button>
-
     </form>
   );
 }
