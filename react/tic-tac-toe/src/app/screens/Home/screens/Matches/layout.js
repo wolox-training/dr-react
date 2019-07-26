@@ -1,5 +1,5 @@
 import React from 'react';
-import { objectOf } from 'prop-types';
+import { arrayOf } from 'prop-types';
 
 import styles from './styles.module.scss';
 
@@ -7,7 +7,7 @@ import withLoader from '~components/WithLoader';
 
 import { matchPropType } from '~constants/propTypes';
 
-function LayoutWithLoader({ matches }) {
+function Layout({ matches }) {
   return (
     <div className={styles.container}>
       <ol className={styles.matches}>
@@ -30,8 +30,8 @@ function LayoutWithLoader({ matches }) {
   );
 }
 
-LayoutWithLoader.prototype = {
-  matches: objectOf(matchPropType)
+Layout.propTypes = {
+  matches: arrayOf(matchPropType)
 };
 
-export default withLoader(LayoutWithLoader);
+export default withLoader(Layout);

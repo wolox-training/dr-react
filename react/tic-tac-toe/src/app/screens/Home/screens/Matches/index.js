@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import gameActions from '~redux/game/actions';
 
-import LayoutWithLoader from './layout';
+import Layout from './layout';
 
 function Matches() {
   const dispatch = useDispatch();
@@ -13,6 +13,6 @@ function Matches() {
     dispatch(gameActions.getMatches());
   }, []);
 
-  return <LayoutWithLoader matches={matches} loader={matchesLoading} />;
+  return <Layout matches={matches} loading={matchesLoading} />;
 }
 export default Matches;

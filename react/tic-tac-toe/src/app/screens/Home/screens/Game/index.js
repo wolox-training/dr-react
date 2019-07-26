@@ -19,8 +19,8 @@ class Game extends Component {
   handleClick = i => {
     const { history, xIsNext, stepNumber } = this.state;
     const { settings } = this.props;
-    const newHistoryPoint = history.slice(0, stepNumber + 1);
-    const current = newHistoryPoint[newHistoryPoint.length - 1];
+    const newHistoryEntry = history.slice(0, stepNumber + 1);
+    const current = newHistoryEntry[newHistoryEntry.length - 1];
     const squares = [...current.squares];
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -29,8 +29,8 @@ class Game extends Component {
     squares[i] = xIsNext ? settings.player_one : settings.player_two;
 
     this.setState(prevState => ({
-      history: newHistoryPoint.concat([{ squares }]),
-      stepNumber: newHistoryPoint.length,
+      history: newHistoryEntry.concat([{ squares }]),
+      stepNumber: newHistoryEntry.length,
       xIsNext: !prevState.xIsNext
     }));
   };

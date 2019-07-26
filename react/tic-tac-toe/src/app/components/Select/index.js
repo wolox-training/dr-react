@@ -1,9 +1,9 @@
 import React from 'react';
 import cn from 'classnames';
 
-function Select({ input, theme, options, id }) {
+function Select({ input, theme, options }) {
   return (
-    <select {...input} id={id} className={cn(theme)}>
+    <select {...input} className={cn(theme)}>
       {options &&
         options.map(opt => (
           <option key={opt.label} value={opt.value}>
@@ -13,6 +13,5 @@ function Select({ input, theme, options, id }) {
     </select>
   );
 }
-Select.propTypes = {};
 
 export default Select;

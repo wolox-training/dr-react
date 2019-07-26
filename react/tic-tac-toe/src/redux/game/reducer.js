@@ -1,4 +1,4 @@
-import { completeReducer, createReducer, completeState } from 'redux-recompose';
+import { completeReducer, createReducer, completeState, onReadValue } from 'redux-recompose';
 
 import { actions } from './actions';
 
@@ -16,13 +16,13 @@ const initialSettings = {
 
 const initialStateDescription = {
   matches: [],
-  settings: localStorageService.getValue(actions.GAME_SETTIGNS) || initialSettings
+  settings: localStorageService.getValue(actions.SET_SETTINGS) || initialSettings
 };
 
 const reducerDescription = {
   primaryActions: [actions.MATCHES],
   override: {
-    [actions.GAME_SETTINGS]: (state, action) => ({ ...state, [action.target]: action.payload })
+    [actions.SET_SETTINGS]: onReadValue()
   }
 };
 

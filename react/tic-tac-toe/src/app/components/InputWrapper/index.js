@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import styles from './styles.module.scss';
 
-import FIELDS from '~constants/fieldComponentsArray';
+import FIELDS from '~constants/form';
 
 function InputWrapper({
   typeField,

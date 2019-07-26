@@ -4,8 +4,8 @@ import Spinner from 'react-spinkit';
 import styles from './styles.module.scss';
 
 function withLoader(WrappedComponent) {
-  return function Loader({ loader, ...props }) {
-    if (loader) {
+  return function Loader({ loading, ...props }) {
+    if (loading) {
       return (
         <div className={styles.container}>
           <Spinner name="double-bounce" fadeIn="none" />

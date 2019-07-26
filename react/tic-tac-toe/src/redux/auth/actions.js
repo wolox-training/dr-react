@@ -5,18 +5,18 @@ import authService from '~services/AuthService';
 
 import localStorageService from '~services/LocalStorageService';
 
-import { setApiHeaders } from '~utils/setApiHeaders';
+import { setApiHeaders } from '~utils/api';
 
 import ERRORS from '~constants/errors';
 
-import { TOKE_TARGET, SESSION_USER } from './constants';
+import { TOKEN_TARGET, USER_SESSION } from './constants';
 
 export const actions = createTypes(completeTypes(['LOGIN'], ['SET_VALUES']), '@@AUTH');
 
 const actionsCreators = {
   logIn: user => ({
     type: actions.LOGIN,
-    target: TOKE_TARGET,
+    target: TOKEN_TARGET,
     service: authService.login,
     payload: user,
     successSelector: response => response.data.token,
@@ -24,7 +24,7 @@ const actionsCreators = {
     injections: [
       withPostSuccess((dispatch, response) => {
         setApiHeaders(response.data.token);
-        localStorageService.setValue(SESSION_USER, {
+        localStorageService.setValue(USER_SESSION, {
           user: user.email,
           isAuthed: true,
           token: response.data.token
@@ -40,7 +40,7 @@ const actionsCreators = {
     ]
   }),
   getLocalStorageValue: () => dispatch => {
-    const session = localStorageService.getValue(SESSION_USER);
+    const session = localStorageService.getValue(USER_SESSION);
     if (session && session.isAuthed) {
       dispatch({
         type: actions.SET_VALUES,
@@ -54,7 +54,7 @@ const actionsCreators = {
       type: actions.SET_VALUES,
       payload: { user: null, isAuthed: false }
     });
-    localStorageService.removeValue(SESSION_USER);
+    localStorageService.removeValue(USER_SESSION);
   }
 };
 
