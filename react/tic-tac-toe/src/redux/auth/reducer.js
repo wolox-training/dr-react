@@ -1,25 +1,20 @@
+import { completeReducer, createReducer, onSpreadValue } from 'redux-recompose';
+
 import { actions } from './actions';
 
 const initialState = {
-  user: '',
+  user: null,
   isAuthed: false,
-  loading: false,
-  error: ''
+  token: null
 };
 
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case actions.AUTH:
-      return { ...state, loading: true };
-    case actions.AUTH_SUCCESS:
-      return { isAuthed: true, loading: false, user: action.payload };
-    case actions.AUTH_FAILURE:
-      return { ...state, isAuthed: false, loading: false, error: action.payload };
-    case actions.LOG_OUT:
-      return { ...state, isAuthed: false };
-    default:
-      return state;
+const reducerDescription = {
+  primaryActions: [actions.LOGIN],
+  override: {
+    [actions.SET_VALUES]: onSpreadValue()
   }
-}
+};
+
+const reducer = createReducer(initialState, completeReducer(reducerDescription));
 
 export { reducer };

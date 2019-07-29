@@ -1,56 +1,60 @@
-import authService from '~services/AuthService';
-
 import { SubmissionError } from 'redux-form';
+import { completeTypes, createTypes, withPostSuccess, withPostFailure } from 'redux-recompose';
+
+import authService from '~services/AuthService';
 
 import localStorageService from '~services/LocalStorageService';
 
-import api from '~config/api';
+import { setApiHeaders } from '~utils/api';
 
 import ERRORS from '~constants/errors';
 
-export const actions = {
-  AUTH: '@@AUTH/AUTH',
-  AUTH_SUCCESS: '@@AUTH/AUTH_SUCCESS',
-  AUTH_FAILURE: '@@AUTH/AUTH_FAILURE',
-  SET_TOKEN: '@@AUTH/SET_TOKEN',
-  LOG_OUT: '@@AUTH/LOG_OUT'
-};
+import { TOKEN_TARGET, USER_SESSION } from './constants';
+
+export const actions = createTypes(completeTypes(['LOGIN'], ['SET_VALUES']), '@@AUTH');
 
 const actionsCreators = {
-  setUp: () => dispatch => {
-    const session = localStorageService.getValue(actions.AUTH);
+  logIn: user => ({
+    type: actions.LOGIN,
+    target: TOKEN_TARGET,
+    service: authService.login,
+    payload: user,
+    successSelector: response => response.data.token,
+    failureSelector: response => ERRORS[response.problem],
+    injections: [
+      withPostSuccess((dispatch, response) => {
+        setApiHeaders(response.data.token);
+        localStorageService.setValue(USER_SESSION, {
+          user: user.email,
+          isAuthed: true,
+          token: response.data.token
+        });
+        dispatch({
+          type: actions.SET_VALUES,
+          payload: { user: user.email, isAuthed: true }
+        });
+      }),
+      withPostFailure((dispatch, response) => {
+        throw new SubmissionError({ _error: ERRORS[response.problem] });
+      })
+    ]
+  }),
+  getLocalStorageValue: () => dispatch => {
+    const session = localStorageService.getValue(USER_SESSION);
     if (session && session.isAuthed) {
-      dispatch({ type: actions.AUTH_SUCCESS, payload: session.email });
-      api.setHeaders({
-        Authorization: session.token
+      dispatch({
+        type: actions.SET_VALUES,
+        payload: { user: session.user, isAuthed: session.isAuthed }
       });
-    } else {
-      dispatch({ type: actions.AUTH_FAILURE });
-    }
-  },
-  logIn: user => async dispatch => {
-    dispatch({ type: actions.AUTH });
-    const response = await authService.login(user);
-    if (response.ok) {
-      api.setHeaders({
-        Authorization: response.data.token
-      });
-      dispatch({ type: actions.AUTH_SUCCESS, payload: user.email });
-      localStorageService.setValue(actions.AUTH, {
-        email: user.email,
-        isAuthed: true,
-        token: response.data.token
-      });
-    } else {
-      dispatch({ type: actions.AUTH_FAILURE, payload: ERRORS[response.problem] });
-      throw new SubmissionError({ _error: ERRORS[response.problem] });
+      setApiHeaders(session.token);
     }
   },
   logOut: () => dispatch => {
     dispatch({
-      type: actions.LOG_OUT
+      type: actions.SET_VALUES,
+      payload: { user: null, isAuthed: false }
     });
-    localStorageService.removeValue(actions.AUTH);
+    localStorageService.removeValue(USER_SESSION);
   }
 };
 
