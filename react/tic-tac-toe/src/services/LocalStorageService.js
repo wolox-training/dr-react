@@ -1,10 +1,18 @@
+function encondeValue(str) {
+  return window.btoa(unescape(encodeURIComponent(str)));
+}
+
+function decodeValue(str) {
+  return decodeURIComponent(escape(window.atob(str)));
+}
+
 function setValue(key, value) {
   if (!value && value !== false) {
     return;
   }
-  const encodedKey = window.btoa(key);
+  const encodedKey = encondeValue(key);
   const stringValue = JSON.stringify(value);
-  const encodedValue = window.btoa(stringValue);
+  const encodedValue = encondeValue(stringValue);
   try {
     window.localStorage.setItem(encodedKey, encodedValue);
   } catch (e) {
@@ -13,10 +21,10 @@ function setValue(key, value) {
 }
 
 function getValue(key) {
-  const encodedKey = window.btoa(key);
+  const encodedKey = encondeValue(key);
   try {
     const encodedValue = window.localStorage.getItem(encodedKey);
-    const stringValue = encodedValue && window.atob(encodedValue);
+    const stringValue = encodedValue && decodeValue(encodedValue);
     return stringValue && JSON.parse(stringValue);
   } catch (e) {
     throw Error('Error: ', e);
@@ -24,7 +32,7 @@ function getValue(key) {
 }
 
 function removeValue(key) {
-  const encodedKey = window.btoa(key);
+  const encodedKey = encondeValue(key);
   try {
     window.localStorage.removeItem(encodedKey);
   } catch (e) {

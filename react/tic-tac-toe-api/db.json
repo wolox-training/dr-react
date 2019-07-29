@@ -50,5 +50,15 @@
       "password": "12345678",
       "token": "1VvVIRQfAS"
     }
+  ],
+    "settings": [
+      {
+       "nickname": "player_one",
+       "emoji": "🤟🏽"
+      },
+      {
+        "nickname": "player_one",
+        "emoji": "👊🏽"
+       }
   ]
 }

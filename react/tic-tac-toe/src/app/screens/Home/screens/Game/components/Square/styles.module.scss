@@ -2,21 +2,32 @@
 @import 'src/scss/fonts';
 $square-background: $white;
 $square-border: $dust-gray;
+$player-one-color: $wolox-blue;
+$next-player-color: $wolox-green;
 
 .square {
   background: $square-background;
   border: 1px solid $square-border;
+  color: $player-one-color;
   float: left;
-  font-size: $text-big;
+  font-size: $text-big * 2;
   font-weight: bold;
-  height: 34px;
+  height: 100px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: darken($color: $square-background, $amount: 10);
+  }
 }
 
-.square:focus {
-  outline: none;
+.next-player {
+  color: $next-player-color;
 }

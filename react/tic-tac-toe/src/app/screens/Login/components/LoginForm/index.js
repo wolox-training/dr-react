@@ -4,7 +4,7 @@ import { func, string } from 'prop-types';
 
 import Button from '~components/Button';
 
-import Input from '~components/Input';
+import InputWrapper from '~components/InputWrapper';
 
 import ErrorMessage from '~components/ErrorMessage';
 
@@ -22,15 +22,17 @@ function LoginForm({ handleSubmit, error }) {
     <form className={styles.form} onSubmit={handleSubmit}>
       <Field
         type="email"
-        component={Input}
+        typeField="input"
+        component={InputWrapper}
         name="email"
-        validate={VALIDATIONS.email}
         autocomplete="off"
         label="Email address"
+        validate={VALIDATIONS.email}
       />
       <Field
         type="password"
-        component={Input}
+        typeField="input"
+        component={InputWrapper}
         name="password"
         validate={VALIDATIONS.password}
         label="Enter your password"

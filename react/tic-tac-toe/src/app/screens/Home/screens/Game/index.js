@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { calculateWinner } from '~utils/game';
+
+import { settingsPropType } from '~constants/propTypes';
 
 import styles from './styles.module.scss';
 import Board from './components/Board';
 import Moves from './components/Moves';
-import Matches from './components/Matches';
 
 class Game extends Component {
   state = {
@@ -16,18 +18,19 @@ class Game extends Component {
 
   handleClick = i => {
     const { history, xIsNext, stepNumber } = this.state;
-    const newHistoryPoint = history.slice(0, stepNumber + 1);
-    const current = newHistoryPoint[newHistoryPoint.length - 1];
+    const { settings } = this.props;
+    const newHistoryEntry = history.slice(0, stepNumber + 1);
+    const current = newHistoryEntry[newHistoryEntry.length - 1];
     const squares = [...current.squares];
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
 
-    squares[i] = xIsNext ? 'X' : 'O';
+    squares[i] = xIsNext ? settings.player_one : settings.player_two;
 
     this.setState(prevState => ({
-      history: newHistoryPoint.concat([{ squares }]),
-      stepNumber: newHistoryPoint.length,
+      history: newHistoryEntry.concat([{ squares }]),
+      stepNumber: newHistoryEntry.length,
       xIsNext: !prevState.xIsNext
     }));
   };
@@ -42,11 +45,14 @@ class Game extends Component {
   renderMoves = (_step, move) => <Moves key={`move-${move + 1}`} onClick={this.handleJumpTo} move={move} />;
 
   render() {
+    const { settings } = this.props;
     const { history, xIsNext, stepNumber } = this.state;
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
 
-    const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`;
+    const status = winner
+      ? `Winner: ${winner}`
+      : `Next player: ${xIsNext ? settings.player_one : settings.player_two}`;
 
     return (
       <div className={styles.game}>
@@ -57,13 +63,15 @@ class Game extends Component {
           <div>{status}</div>
           <ol>{history.map(this.renderMoves)}</ol>
         </div>
-        <div className={styles.gameInfo}>
-          <div>Partidas</div>
-          <Matches />
-        </div>
       </div>
     );
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({ settings: state.game.settings });
+
+Game.propTypes = {
+  settings: settingsPropType
+};
+
+export default connect(mapStateToProps)(Game);

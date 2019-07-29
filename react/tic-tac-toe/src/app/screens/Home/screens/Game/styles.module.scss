@@ -1,9 +1,15 @@
 .game {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   padding: 32px;
 }
 
 .game-info {
   margin-left: 20px;
+}
+
+
+.game-board {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) ;
 }

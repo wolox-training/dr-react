@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
+import Button from '~components/Button';
+
 import styles from './styles.module.scss';
 
 function Square({ onClick, position, value }) {
@@ -8,9 +10,9 @@ function Square({ onClick, position, value }) {
     onClick(position);
   }, [position]);
   return (
-    <button type="button" className={styles.square} onClick={handleClick}>
+    <Button type="button" onClick={handleClick} className={styles.square}>
       {value}
-    </button>
+    </Button>
   );
 }
 

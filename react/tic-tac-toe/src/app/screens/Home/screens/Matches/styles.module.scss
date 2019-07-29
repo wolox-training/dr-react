@@ -1,0 +1,33 @@
+@import 'src/scss/colors.scss';
+$text-player: $black;
+$text-winner-color: $wolox-green;
+
+.match {
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) ;
+  display: flex;
+  flex-basis: 200px;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+.container {
+  padding: 32px;
+}
+
+.matches {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto, 1fr);
+}
+
+.player {
+  color: $text-player;
+  margin-bottom: 10px;
+}
+
+.winner {
+  color: $text-winner-color;
+}

@@ -28,7 +28,7 @@ $red-error: $red;
   }
 
   &.focused {
-    &::after {
+    &:after {
       border: 2px solid $focus-color;
     }
 
@@ -37,9 +37,12 @@ $red-error: $red;
     }
   }
 
-  &.focused .label,
-  &.has-value .label {
-    transform: translate(10px, -45px) scale(0.8);
+  &.focused,
+  &.has-value {
+    .label {
+      font-size: $text-small;
+      transform: translate(10px, -45px);
+    }
   }
 
   &.error {
@@ -63,6 +66,7 @@ $red-error: $red;
 }
 
 .input {
+  background: $white;
   border-radius: 0.25rem;
   color: $black;
   display: block;
@@ -79,8 +83,7 @@ $red-error: $red;
   pointer-events: none;
   position: absolute;
   transform: translate(10px, -19px);
-  transform-origin: left;
-  transition: transform;
+  transition: transform, font-size;
   transition-duration: $default-transition-duration * 1.5;
   transition-timing-function: $label-transition-timing;
   z-index: 5;
